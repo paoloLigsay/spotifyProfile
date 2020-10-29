@@ -8,7 +8,7 @@ let scope = 'playlist-read-private'
 
 
 fetch(
-  `https://api.spotify.com/v1/playlists/${7I6Xs1Nx6avnEMelOxUFfC}/tracks`
+  `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`
 ).then(
   res => res.json()
 ).then(
