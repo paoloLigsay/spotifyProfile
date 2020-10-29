@@ -15,6 +15,8 @@ fetch(
   data => console.log(data)
 )
 
+console.log('s')
+
 
 
 // curl -H "Authorization: Basic ZDYxZDM3ZTBiODdkNGQ4Y2FiYjlhNjEzNThhNWM5MTI6YjUxOGRjNGFjYjIyNDE1MDk2ZjY0Yzk4Y2QyNzA1MDI=" -d grant_type=authorization_code -d code=MQCbtKe...44KN -d redirect_uri=https%3A%2F%2Fpaolomartinligsay.netlify.app%2F https://accounts.spotify.com/api/token
