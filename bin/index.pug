@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="src/styling/main.css")
+    title Spotify Profile | Paolo Ligsay
+  body
+
+    //- .pl-login
+    //-   h2 Welcome to Spotify Profile
+    //-   a.pl-btn.pl-btn--green.pl-btn--login(href="https://accounts.spotify.com/authorize?client_id=d61d37e0b87d4d8cabb9a61358a5c912&response_type=code&redirect_uri=https%3A%2F%2Fyourspotifyprofile.netlify.app%2F&scope=playlist-read-private user-read-private user-read-email user-read-recently-played user-top-read user-follow-read")
+    //-     p Login to Spotify
+
+    .pl-sidebar
+      img.pl-sidebar__logo(src="src/img/logo.png" alt="Spotify Logo")
+
+      ul.pl-sidebar__list
+        li.pl-sidebar__item.pl-sidebar__item--active
+          img.pl-sidebar__icon(src="src/img/icon-profile.png" alt="Profile Icon")
+          p Profile
+
+        li.pl-sidebar__item
+          img.pl-sidebar__icon(src="src/img/icon-magnify.png" alt="Profile Icon")
+          p Discover
+
+        li.pl-sidebar__item
+          img.pl-sidebar__icon(src="src/img/icon-music.png" alt="Profile Icon")
+          p Top Tracks
+
+        li.pl-sidebar__item
+          img.pl-sidebar__icon(src="src/img/icon-mic.png" alt="Profile Icon")
+          p Top Artist
+
+        li.pl-sidebar__item
+          img.pl-sidebar__icon(src="src/img/icon-playlist.png" alt="Profile Icon")
+          p Playlist
+
+    .pl-content
+      .pl-container.pl-container--active
+        .pl-user-component
+          p.pl-text.pl-text--24 User
+          h2.pl-text.pl-text--48 Paolo Martin
+
+    script(src="src/js/fetch.js")
+    script(src="src/js/main.js")
+    script(src="src/js/sidebar.js")

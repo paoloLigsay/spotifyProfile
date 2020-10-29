@@ -1,0 +1,17 @@
+// variables
+
+$primary: #1db954;
+$secondary: #191414;
+
+$shade: #1db954;
+$white: #fff;
+$dark: #100f0f;
+$gray: #a5a5a5;
+
+$texts: 21, 24, 48;
+
+// imports
+@import './mixin';
+@import './anim';
+@import './global';
+@import './profile';
