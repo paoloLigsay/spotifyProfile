@@ -11,7 +11,7 @@
     <p> {{ profile.follower }} </p> -->
 
     <!-- sidebar -->
-    <sidebar :profile="d_access_token" />
+    <sidebar :d_access_token="d_access_token" />
 
     <!-- main content -->
     <div class="main">
