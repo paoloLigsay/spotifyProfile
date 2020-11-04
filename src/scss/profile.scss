@@ -1,3 +1,26 @@
 .profile {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+  }
 
+  &__image {
+    width: 150px;
+    height: 150px;
+    margin-right: 30px;
+    border-radius: 100%;
+
+    &--fallback {
+      border-radius: 0;
+    }
+  }
+
+  &__follo {
+    display: flex;
+
+    p {
+      margin-right: 15px;
+    }
+  }
 }

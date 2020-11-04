@@ -1,12 +1,14 @@
 <template>
   <div class="profile">
     <div class="profile__header">
-      <img src="../img/profile.png" alt="Profile Picture" class="profile__image-fallback">
+      <img src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
       <div class="profile__header-info">
         <p class="text text--24"> {{ d_profile.type }} </p>
         <h2 class="text text--48"> {{ d_profile.name }} </h2>
-        <p class="text text--24"> {{ d_profile.followers }} </p>
       </div>
+    </div>
+    <div class="profile__follow">
+       <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Following </p>
     </div>
   </div>
 </template>
@@ -19,9 +21,10 @@
         d_params: '',
         d_access_token: '',
         d_profile: {
-          type: 'user',
+          type: 'not found',
           name: 'No User Found',
-          followers: 1
+          followers: 0,
+          following: 0
         }
       }
     },
@@ -45,6 +48,15 @@
           },
           method: "POST"
         })
+      },
+      get_user_followed_artists(local_access_token) {
+        return fetch("https://api.spotify.com/v1/me/following?type=artist", {
+          headers: {
+            Authorization: `Bearer ${local_access_token}`
+          }
+        }).then(
+          res => res.json()
+        ).then(data => data)
       },
       get_profile(local_access_token) {
         return fetch("https://api.spotify.com/v1/me", {
@@ -92,6 +104,12 @@
 
                     // print profile
                     this.print_profile(this.d_access_token)
+                    // get following
+                    this.get_user_followed_artists(this.d_access_token)
+                      .then(
+                        data => console.log(data)
+                        // data => this.d_profile.following = data.
+                      )
                   }
                 )
             }
