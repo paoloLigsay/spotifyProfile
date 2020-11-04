@@ -6,6 +6,7 @@
         <p class="text text--24"> {{ d_profile.type }} </p>
         <h2 class="text text--48"> {{ d_profile.name }} </h2>
       </div>
+      <div class="btn" @click="logout"> Logout </div>
     </div>
     <div class="profile__follow">
        <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Follower </p>
@@ -77,6 +78,10 @@
               this.d_profile.followers = data.followers.total
             }
           )
+      },
+      logout() {
+        localStorage.setItem('local_token_new4', null)
+        this.$router.push('login')
       }
     },
     created() {

@@ -1,8 +1,15 @@
 .profile {
   &__header {
+    position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 35px;
+
+    .btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 
   &__image {
