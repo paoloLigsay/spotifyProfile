@@ -80,7 +80,7 @@
           )
       },
       logout() {
-        localStorage.setItem('local_token_new4', null)
+        localStorage.removeItem('local_token_new4')
         this.$router.push('login')
       }
     },
