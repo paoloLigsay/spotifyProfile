@@ -95,7 +95,17 @@
             }
           )
       } else if(localStorage.getItem('local_token_new4') !== null) {
-        // const permanent_token = localStorage.getItem('local_token_new4')
+        const permanent_token = localStorage.getItem('local_token_new4')
+
+        // get profile
+        this.get_profile(permanent_token)
+          .then(
+            data => {
+              this.d_profile.name = data.display_name
+              this.d_profile.type = data.type
+              this.d_profile.followers = data.followers.total
+            }
+          )
       }
     }
   }
