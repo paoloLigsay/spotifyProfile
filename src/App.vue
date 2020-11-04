@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- sidebar -->
-    <sidebar :d_access_token="d_access_token" />
 
     <!-- main content -->
     <div class="main">
@@ -15,14 +13,8 @@
 
 <script>
 
-  /* imports */
-  import sidebar from './components/sidebar'
-
   export default {
     name: 'App',
-    components: {
-      sidebar
-    },
     data() {
       return {
         d_params: '',

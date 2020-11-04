@@ -1,23 +1,35 @@
 <template>
-  <div class="profile">
-    <div class="profile__header">
-      <img src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
-      <div class="profile__header-info">
-        <p class="text text--24"> {{ d_profile.type }} </p>
-        <h2 class="text text--48"> {{ d_profile.name }} </h2>
+  <div>
+      <!-- sidebar -->
+    <sidebar :d_access_token="d_access_token" />
+
+    <!-- component -->
+    <div class="profile">
+      <div class="profile__header">
+        <img src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
+        <div class="profile__header-info">
+          <p class="text text--24"> {{ d_profile.type }} </p>
+          <h2 class="text text--48"> {{ d_profile.name }} </h2>
+        </div>
+        <div class="btn" @click="logout"> Logout </div>
       </div>
-      <div class="btn" @click="logout"> Logout </div>
-    </div>
-    <div class="profile__follow">
-       <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Follower </p>
-       <p class="text text--24"> <span class="text--green"> {{ d_profile.following }} </span> Following </p>
+      <div class="profile__follow">
+        <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Follower </p>
+        <p class="text text--24"> <span class="text--green"> {{ d_profile.following }} </span> Following </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  /* imports */
+  import sidebar from './sidebar'
+
   export default {
     name: 'profile',
+    components: {
+      sidebar
+    },
     data() { 
       return {
         d_params: '',
