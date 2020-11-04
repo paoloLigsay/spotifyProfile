@@ -81,7 +81,7 @@
       },
       logout() {
         localStorage.removeItem('local_token_new4')
-        this.$router.push('login')
+        this.$router.replace('/login')
       }
     },
     created() {
