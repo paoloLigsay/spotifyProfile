@@ -54,6 +54,16 @@
         }).then(
           res => res.json()
         ).then(data => data)
+      },
+      print_profile(access_token) {
+        this.get_profile(access_token)
+          .then(
+            data => {
+              this.d_profile.name = data.display_name
+              this.d_profile.type = data.type
+              this.d_profile.followers = data.followers.total
+            }
+          )
       }
     },
     created() {
@@ -80,16 +90,8 @@
                     localStorage.setItem('local_token_new4', data.access_token)
                     this.d_access_token = data.access_token
 
-                    // get profile
-                    this.get_profile(this.d_access_token)
-                      .then(
-                        data => {
-                          this.d_profile.name = data.display_name
-                          this.d_profile.type = data.type
-                          this.d_profile.followers = data.followers.total
-                        }
-                      )
-
+                    // print profile
+                    this.print_profile(this.d_access_token)
                   }
                 )
             }
@@ -97,15 +99,8 @@
       } else if(localStorage.getItem('local_token_new4') !== null) {
         const permanent_token = localStorage.getItem('local_token_new4')
 
-        // get profile
-        this.get_profile(permanent_token)
-          .then(
-            data => {
-              this.d_profile.name = data.display_name
-              this.d_profile.type = data.type
-              this.d_profile.followers = data.followers.total
-            }
-          )
+        // print profile
+        this.print_profile(this.d_access_token)
       }
     }
   }
