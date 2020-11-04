@@ -17,13 +17,13 @@
     name: 'App',
     data() {
       return {
-        d_params: '',
+        d_loc: '',
       }
     },
     created() {
       // Get URL Parameter
-      this.d_params = window.location.search
-      if(this.d_params.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+      this.d_loc = window.location.href
+      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
         this.$router.push('login')
       }
     }
