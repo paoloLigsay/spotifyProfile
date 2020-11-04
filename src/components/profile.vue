@@ -81,7 +81,7 @@
       },
       logout() {
         localStorage.removeItem('local_token_new4')
-        this.$router.replace('/')
+        window.location.href = 'https://yourspotifyprofile.netlify.app/'
       }
     },
     created() {
