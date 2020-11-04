@@ -23,7 +23,7 @@
     mounted() {
       window.onpopstate = e => {
         if (!this.$session.exists(e)) {
-          this.$router.push("/");
+          this.$router.push("/login");
         }
       }
     }
