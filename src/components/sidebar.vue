@@ -6,7 +6,7 @@
       <router-link to="/">
         <li class="sidebar__item sidebar__item--active">
           <img src="../img/icon-profile.png" alt="Spotify Profile" class="sidebar__icon">
-          <p class="sidebar__text"> Profile </p>
+          <p class="sidebar__text"> Profiles </p>
         </li>
       </router-link>
 
