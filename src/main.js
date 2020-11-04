@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 
 // components
 import Discover from './components/discover'
-import Discover from './components/discover'
 import Profile from './components/profile'
 
 Vue.config.productionTip = false
