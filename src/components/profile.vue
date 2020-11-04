@@ -135,7 +135,7 @@
                       )
                   }
                 ).catch(
-                  e => console.log('sample' + e)
+                  e => this.$router.push('login')
                 )
             }
           )
