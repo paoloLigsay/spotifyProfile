@@ -9,6 +9,9 @@
 
 <script>
   export default {
-    
+    created() {
+      if(localStorage.getItem('local_token_new4') !== null)
+        this.$router.replace('/')
+    }
   }
 </script>
