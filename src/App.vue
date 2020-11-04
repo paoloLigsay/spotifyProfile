@@ -20,7 +20,7 @@
         d_params: '',
       }
     },
-    created() {
+    mounted() {
       // Get URL Parameter
       this.d_params = window.location.search
       console.log(this.d_params)
@@ -28,13 +28,6 @@
         this.$router.push('login')
       }
     },
-    mounted() {
-      window.onpopstate = event => {
-        if (!this.$session.exists()) {
-          this.$router.push("/");
-        }
-      }
-    }
   }
 
 </script>
