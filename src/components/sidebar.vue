@@ -38,16 +38,12 @@
         </li>
       </router-link>
 
-      <p> Displays </p>
-      {{ d_access_token }}
-
     </ul>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'sidebar',
-    props: ["d_access_token"]
+    name: 'sidebar'
   }
 </script>

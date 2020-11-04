@@ -3,8 +3,9 @@
     <div class="profile__header">
       <img src="../img/profile.png" alt="Profile Picture" class="profile__image-fallback">
       <div class="profile__header-info">
-        <p class="text text--24"> User </p>
-        <h2 class="text text--48"> {{ d_access_token }} </h2>
+        <p class="text text--24"> {{ d_profile.type }} </p>
+        <h2 class="text text--48"> {{ d_profile.name }} </h2>
+        <p class="text text--24"> {{ d_profile.following }} </p>
       </div>
     </div>
   </div>
@@ -16,7 +17,12 @@
     data() { 
       return {
         d_params: '',
-        d_access_token: ''
+        d_access_token: '',
+        d_profile: {
+          type: 'user',
+          name: 'No User Found',
+          followers: 1
+        }
       }
     },
     methods: {
@@ -51,7 +57,7 @@
       }
     },
     created() {
-            // Get URL Parameter
+      // Get URL Parameter
       this.d_params = window.location.search
 
       if(this.d_params.includes('code=') && localStorage.getItem('local_token_new4') === null) {
@@ -73,10 +79,23 @@
                     // set local storage to save data (token) on reload
                     localStorage.setItem('local_token_new4', data.access_token)
                     this.d_access_token = data.access_token
+
+                    // get profile
+                    get_profile(data.access_token)
+                      .then(
+                        data => {
+                          this.d_profile.name = data.display_name
+                          this.d_profile.type = data.type
+                          this.d_profile.followers = data.followers.total
+                        }
+                      )
+
                   }
                 )
             }
           )
+      } else if(localStorage.getItem('local_token_new4') !== null) {
+        const permanent_token = localStorage.getItem('local_token_new4')
       }
     }
   }
