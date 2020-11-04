@@ -13,11 +13,12 @@ const routes = [
   { 
     path: '/discover/:display_name',
     component: Discover,
-    props: route => ({ query: route.query.q })
+    props: true
   },
   { 
     path: '/',
-    component: Profile
+    component: Profile,
+    props: true
   },
 ]
 

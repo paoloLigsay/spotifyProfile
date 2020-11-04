@@ -10,7 +10,7 @@
         </li>
       </router-link>
 
-      <router-link :to="{ name: 'profile', params: { d_access_token }}">
+      <router-link :to="{ name: 'discover', params: { d_access_token }}">
         <li class="sidebar__item">
           <img src="../img/icon-magnify.png" alt="Icon Magnify" class="sidebar__icon">
           <p class="sidebar__text"> Discover </p>

@@ -5,11 +5,6 @@
       LOGIN
     </a>
 
-    <!-- <p> data: </p>
-    <p> {{ profile.display_name }} </p>
-    <p> {{ profile.type }} </p>
-    <p> {{ profile.follower }} </p> -->
-
     <!-- sidebar -->
     <sidebar :d_access_token="d_access_token" />
 
@@ -68,6 +63,9 @@
         }).then(
           res => res.json()
         ).then(data => data)
+      },
+      pass_profile(){
+        router.push({ name: 'profile', params: { userId: 123 }})
       }
     },
     created() {
@@ -92,21 +90,14 @@
                   data => {
                     // set local storage to save data (token) on reload
                     localStorage.setItem('local_token_new4', data.access_token)
-                    console.log('successfull')
-
                     this.d_access_token = data.access_token
-                    // get profile : promise
-                    // this.get_profile(data.access_token)
-                    //   .then(data => {
-                    //     this.profile.display_name = data.display_name
-                    //     this.profile.type = data.type
-                    //     this.profile.follower = data.followers.total
-                    //   })
                   }
                 )
             }
           )
       }
+
+      this.pass_profile()
     }
   }
 
