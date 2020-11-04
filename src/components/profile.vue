@@ -95,7 +95,7 @@
             }
           )
       } else if(localStorage.getItem('local_token_new4') !== null) {
-        const permanent_token = localStorage.getItem('local_token_new4')
+        // const permanent_token = localStorage.getItem('local_token_new4')
       }
     }
   }
