@@ -19,11 +19,6 @@
       return {
         d_params: '',
       }
-    },
-    mounted() {
-      // if not logged in restrict user to access pages
-      if(localStorage.getItem('local_token_new4') === null)
-        this.$router.push('login')
     }
   }
 

@@ -136,6 +136,8 @@
 
         // print profile
         this.print_profile(permanent_token)
+      } else {
+        this.$router.push('login')
       }
     }
   }
