@@ -38,7 +38,7 @@
         </li>
       </router-link>
 
-      <p> Display </p>
+      <p> Displays </p>
       {{ d_access_token }}
 
     </ul>
