@@ -19,13 +19,6 @@
       return {
         d_params: '',
       }
-    },
-    mounted() {
-      window.onpopstate = e => {
-        if (!this.$session.exists(e)) {
-          this.$router.push("/login");
-        }
-      }
     }
   }
 

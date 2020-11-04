@@ -137,6 +137,9 @@
         // print profile
         this.print_profile(permanent_token)
       }
+    },
+    mounted() {
+      // 
     }
   }
 </script>
