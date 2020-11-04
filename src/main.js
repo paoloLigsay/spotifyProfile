@@ -11,13 +11,15 @@ Vue.use(VueRouter)
 
 const routes = [
   { 
-    path: '/discover/:display_name',
-    component: Discover,
+    path: '/discover/:access_token',
+    name: discover,
+    component: discover,
     props: true
   },
   { 
     path: '/',
-    component: Profile,
+    name: profile,
+    component: profile,
     props: true
   }
 ]
