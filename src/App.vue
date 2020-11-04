@@ -65,6 +65,7 @@
         ).then(data => data)
       },
       pass_profile(){
+        console.log('eeee')
         router.push({ name: 'profile', params: { userId: 123 }})
       }
     },
