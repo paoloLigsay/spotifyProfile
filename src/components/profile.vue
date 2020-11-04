@@ -8,7 +8,8 @@
       </div>
     </div>
     <div class="profile__follow">
-       <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Following </p>
+       <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Follower </p>
+       <p class="text text--24"> <span class="text--green"> {{ d_profile.following }} </span> Following </p>
     </div>
   </div>
 </template>
@@ -104,11 +105,10 @@
 
                     // print profile
                     this.print_profile(this.d_access_token)
-                    // get following
+                    // get following and print
                     this.get_user_followed_artists(this.d_access_token)
                       .then(
-                        data => console.log(data)
-                        // data => this.d_profile.following = data.
+                        data => this.d_profile.following = data.artists.items.length
                       )
                   }
                 )
