@@ -27,6 +27,13 @@
       if(this.d_params.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
         this.$router.push('login')
       }
+    },
+    mounted() {
+      window.onpopstate = event => {
+        if (!this.$session.exists()) {
+          this.$router.push("/");
+        }
+      }
     }
   }
 
