@@ -11,7 +11,7 @@
     <p> {{ profile.follower }} </p> -->
 
     <!-- sidebar -->
-    <sidebar :profile="d_access_token" />
+    <sidebar :d_access_token="d_access_token" />
 
     <!-- main content -->
     <div class="main">
@@ -68,6 +68,10 @@
         }).then(
           res => res.json()
         ).then(data => data)
+      },
+      pass_profile() {
+        console.log('pass')
+        router.push({ name: 'Profile', params: { userId: 123 }})
       }
     },
     created() {
@@ -93,20 +97,14 @@
                     // set local storage to save data (token) on reload
                     localStorage.setItem('local_token_new4', data.access_token)
                     console.log('successfull')
-
                     this.d_access_token = data.access_token
-                    // get profile : promise
-                    // this.get_profile(data.access_token)
-                    //   .then(data => {
-                    //     this.profile.display_name = data.display_name
-                    //     this.profile.type = data.type
-                    //     this.profile.follower = data.followers.total
-                    //   })
                   }
                 )
             }
           )
       }
+
+      pass_profile()
     }
   }
 
