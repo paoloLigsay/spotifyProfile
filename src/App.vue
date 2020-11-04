@@ -5,11 +5,6 @@
       LOGIN
     </a>
 
-    <!-- <p> data: </p>
-    <p> {{ profile.display_name }} </p>
-    <p> {{ profile.type }} </p>
-    <p> {{ profile.follower }} </p> -->
-
     <!-- sidebar -->
     <sidebar :d_access_token="d_access_token" />
 
@@ -68,10 +63,6 @@
         }).then(
           res => res.json()
         ).then(data => data)
-      },
-      pass_profile() {
-        console.log('pass')
-        router.push({ name: 'Profile', params: { userId: 123 }})
       }
     },
     created() {
@@ -103,8 +94,6 @@
             }
           )
       }
-
-      pass_profile()
     }
   }
 
