@@ -136,7 +136,8 @@
                 )
             }
           ).catch(
-            () => {
+            e => {
+              console.log(e)
               if(localStorage.getItem('local_token_new4') === null || localStorage.getItem('local_token_new4') === undefined)
                 this.$router.push('login')
             }
