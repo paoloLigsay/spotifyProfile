@@ -128,6 +128,11 @@
                         data => this.d_profile.following = data.artists.items.length
                       )
                   }
+                ).then(
+                  data => {
+                    if(localStorage.getItem('local_token_new4') === null || localStorage.getItem('local_token_new4') === undefined)
+                      this.$router.push('login')
+                  }
                 )
             }
           )
@@ -137,10 +142,6 @@
         // print profile
         this.print_profile(permanent_token)
       }
-    },
-    mounted() {
-      if(localStorage.getItem('local_token_new4') === null || localStorage.getItem('local_token_new4') === undefined)
-        this.$router.push('login')
     }
   }
 </script>
