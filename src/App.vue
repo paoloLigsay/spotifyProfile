@@ -21,13 +21,10 @@
       }
     },
     mounted() {
-      // Get URL Parameter
-      this.d_params = window.location.search
-      console.log(this.d_params)
-      if(this.d_params.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+      // if not logged in restrict user to access pages
+      if(localStorage.getItem('local_token_new4') === null)
         this.$router.push('login')
-      }
-    },
+    }
   }
 
 </script>
