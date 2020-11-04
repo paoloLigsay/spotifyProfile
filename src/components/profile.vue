@@ -135,6 +135,11 @@
                   }
                 )
             }
+          ).catch(
+            () => {
+              if(localStorage.getItem('local_token_new4') === null || localStorage.getItem('local_token_new4') === undefined)
+                this.$router.push('login')
+            }
           )
       } else if(localStorage.getItem('local_token_new4') !== null) {
         const permanent_token = localStorage.getItem('local_token_new4')
