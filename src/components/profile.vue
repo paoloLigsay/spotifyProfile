@@ -100,7 +100,7 @@
         const permanent_token = localStorage.getItem('local_token_new4')
 
         // print profile
-        this.print_profile(this.d_access_token)
+        this.print_profile(permanent_token)
       }
     }
   }
