@@ -5,7 +5,7 @@
       <div class="profile__header-info">
         <p class="text text--24"> {{ d_profile.type }} </p>
         <h2 class="text text--48"> {{ d_profile.name }} </h2>
-        <p class="text text--24"> {{ d_profile.following }} </p>
+        <p class="text text--24"> {{ d_profile.followers }} </p>
       </div>
     </div>
   </div>
