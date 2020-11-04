@@ -81,7 +81,7 @@
                     this.d_access_token = data.access_token
 
                     // get profile
-                    get_profile(data.access_token)
+                    this.get_profile(this.d_access_token)
                       .then(
                         data => {
                           this.d_profile.name = data.display_name
