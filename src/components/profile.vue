@@ -33,6 +33,7 @@
     data() { 
       return {
         d_params: '',
+        d_loc: '',
         d_access_token: '',
         d_profile: {
           type: 'not found',
@@ -144,6 +145,12 @@
 
         // print profile
         this.print_profile(permanent_token)
+      }
+
+      // Get URL
+      this.d_loc = window.location.href
+      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+        this.$router.push('login')
       }
     }
   }
