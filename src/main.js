@@ -3,8 +3,8 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 
 // components
-import Discover from './components/discover'
-import Profile from './components/profile'
+import discover from './components/discover'
+import profile from './components/profile'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
