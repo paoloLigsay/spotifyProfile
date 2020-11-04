@@ -113,7 +113,13 @@
               const temp_token = data.refresh_token
               // pass temporary token and get permanent token
               this.get_permanent_token(temp_token)
-                .then(res => res.json())
+                .then(res => {
+                  if (res.ok) {
+                    return res.json();
+                  } else {
+                    throw new Error('Something went wrong');
+                  }
+                })
                 .then(
                   data => {
                     // set local storage to save data (token) on reload
