@@ -142,7 +142,7 @@
       },
       logout() {
         const logout_holder = document.querySelector('.logout-holder')
-        const logout_iframe = `<iframe style={{display: 'none'}} src="https://spotify.com/logout"></iframe>`
+        const logout_iframe = `<iframe style="display: none" src="https://spotify.com/logout"></iframe>`
         logout_holder.innerHTML = logout_iframe
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
