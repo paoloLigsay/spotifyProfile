@@ -1,10 +1,14 @@
 <template>
   <div>
-      <!-- sidebar -->
-    <sidebar :d_access_token="d_access_token" />
+    <!-- sidebar -->
+    <sidebar/>
+
+    <!-- loader -->
+    <span class="loader"></span>
 
     <!-- component -->
     <div class="profile">
+      <!-- header -->
       <div class="profile__header">
         <img src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
         <div class="profile__header-info">
@@ -13,9 +17,47 @@
         </div>
         <div class="btn" @click="logout"> Logout </div>
       </div>
+
       <div class="profile__follow">
         <p class="text text--24"> <span class="text--green"> {{ d_profile.followers }} </span> Follower </p>
         <p class="text text--24"> <span class="text--green"> {{ d_profile.following }} </span> Following </p>
+      </div>
+
+      <div class="profile__content">
+        <!-- profile playlists and tracts -->
+        <div class="profile__data">
+          <p class="text text--24"> Public Playlists </p>
+          <div class="profile__playlist">
+            <a href="#" class="profile__playlist-item">
+              <img src="" alt="playlist image" class="profile__playlist-img">
+              <p class="text text--21"> Workout Playlist </p>
+              <p class="text"> 8 Tracks </p>
+            </a>
+
+            <a href="#" class="profile__playlist-item">
+              <img src="" alt="playlist image" class="profile__playlist-img">
+              <p class="text text--21"> Workout Playlist </p>
+              <p class="text"> 8 Tracks </p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Followed Artists -->
+        <div class="profile__following">
+          <p class="text text--21 text--gray"> Followed Artists </p>
+          <a href="#" class="profile__following-item">
+            <p class="text"> Sam Smith  </p>
+            <p class="text text--12"> 13, 265, 675 Followers </p>
+          </a>
+          <a href="#" class="profile__following-item">
+            <p class="text"> Sam Smith  </p>
+            <p class="text text--12"> 13, 265, 675 Followers </p>
+          </a>
+          <a href="#" class="profile__following-item">
+            <p class="text"> Sam Smith  </p>
+            <p class="text text--12"> 13, 265, 675 Followers </p>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -118,7 +160,7 @@
                   if (res.ok) {
                     return res.json();
                   } else {
-                    throw new Error('Something went wrong');
+                    throw new Error('Please Login. No Token Stored.');
                   }
                 })
                 .then(
@@ -126,7 +168,6 @@
                     // set local storage to save data (token) on reload
                     localStorage.setItem('local_token_new4', data.access_token)
                     this.d_access_token = data.access_token
-
                     // print profile
                     this.print_profile(this.d_access_token)
                     // get following and print
@@ -134,24 +175,28 @@
                       .then(
                         data => this.d_profile.following = data.artists.items.length
                       )
+                    // remove loader and display data
+                    const loader = document.querySelector('.loader')
+                    const profile = document.querySelector('.profile')
+                    loader.classList.add('loader--done')
+                    profile.classList.add('profile--active')
                   }
                 ).catch(
                   () => this.$router.push('login')
                 )
             }
-          )
+          ) 
       } else if(localStorage.getItem('local_token_new4') !== null) {
         const permanent_token = localStorage.getItem('local_token_new4')
-
         // print profile
         this.print_profile(permanent_token)
       }
 
       // Get URL
-      this.d_loc = window.location.href
-      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
-        this.$router.push('login')
-      }
+      // this.d_loc = window.location.href
+      // if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+      //   this.$router.push('login')
+      // }
     }
   }
 </script>

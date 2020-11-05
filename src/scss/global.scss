@@ -44,7 +44,7 @@
 
 /* sidebar */
 .sidebar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100px;
@@ -136,6 +136,10 @@
   &--green {
     color: $primary;
   }
+
+  &--gray {
+    color: $gray;
+  }
 }
 
 /* buttons */
@@ -162,5 +166,25 @@
       background-color: $shade;
       border-color: $shade;
     }
+  }
+}
+
+.loader {
+  position: absolute;
+  left: auto;
+  top: auto;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  width: 30px;
+  height: 30px;
+  border: 2px solid $white;
+  animation: loader 2s infinite;
+  transition: all 300s ease;
+
+  &--done {
+    opacity: 0;
+    visibility: hidden;
+    animation-play-state: paused;
   }
 }

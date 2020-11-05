@@ -1,1 +1,16 @@
 // animations
+@keyframes loader {
+  0% {
+    transform: translate(50%, 50%) rotate(0);
+    border-color: $white;
+  }
+
+  80% {
+    border-color: $primary;
+  }
+
+  100% {
+    transform: translate(50%, 50%) rotate(360deg);
+    border-color: $white;
+  }
+}
