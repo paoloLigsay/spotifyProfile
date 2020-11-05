@@ -144,8 +144,9 @@
         ).then(data => data)
       },
       logout() {
-        const url = 'https://accounts.spotify.com/en/logout'                                                                                                                                                                                                                                                                               
-        const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')                                                                                              
+        const url = 'https://accounts.spotify.com/en/logout'
+        // const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')
+        window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')
         // setTimeout(() => spotifyLogoutWindow.hide(), 1000) doesnt work lol.
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
