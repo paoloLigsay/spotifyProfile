@@ -4,10 +4,10 @@
     <sidebar/>
 
     <!-- loader -->
-    <span class="loader"></span>
+    <span class="loader loader--done"></span>
 
     <!-- component -->
-    <div class="profile">
+    <div class="profile profile--active">
       <!-- header -->
       <div class="profile__header">
         <img src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
@@ -82,7 +82,8 @@
           name: 'No User Found',
           followers: 0,
           following: 0
-        }
+        },
+        d_playlist: []
       }
     },
     methods: {
@@ -134,6 +135,15 @@
             }
           )
       },
+      get_user_playlists (local_access_token) {
+        return fetch("https://api.spotify.com/v1/me/playlists?offset=2", {
+          headers: {
+            Authorization: `Bearer ${local_access_token}`
+          }
+        }).then(
+          res => res.json()
+        ).then(data => data)
+      },
       logout() {
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
@@ -172,9 +182,26 @@
                     this.print_profile(this.d_access_token)
                     // get following and print
                     this.get_user_followed_artists(this.d_access_token)
-                      .then(
-                        data => this.d_profile.following = data.artists.items.length
-                      )
+                      .then(data => this.d_profile.following = data.artists.items.length)
+                    
+                    // get playlist and print
+                    this.get_user_playlists(this.d_access_token)
+                      .then(data => {
+                        const playlists = data.items
+                        for(let playlist of playlist) {
+                          let playlist_info = {
+                            url: playlist.spotify,
+                            name: playlist.name,
+                            image: playlist.images[0],
+                          }
+                          console.log(playlists)
+                          console.log(playlist)
+                          console.log(playlist_info)
+                        }
+                        // this.d_playlist
+                      })
+
+                    
                     // remove loader and display data
                     const loader = document.querySelector('.loader')
                     const profile = document.querySelector('.profile')
