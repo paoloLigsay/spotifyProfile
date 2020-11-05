@@ -186,7 +186,7 @@
                           let playlist_info = {
                             url: playlist.external_urls.spotify,
                             name: playlist.name,
-                            image: playlist.images[0],
+                            image: playlist.images[0].url,
                             track_count: playlist.tracks.total
                           }
                           // push to data playlits (live change in ui)
