@@ -42,17 +42,9 @@
         <!-- Followed Artists -->
         <div class="profile__following">
           <p class="text text--21 text--gray"> Followed Artists </p>
-          <a href="#" class="profile__following-item">
-            <p class="text"> Sam Smith  </p>
-            <p class="text text--12"> 13, 265, 675 Followers </p>
-          </a>
-          <a href="#" class="profile__following-item">
-            <p class="text"> Sam Smith  </p>
-            <p class="text text--12"> 13, 265, 675 Followers </p>
-          </a>
-          <a href="#" class="profile__following-item">
-            <p class="text"> Sam Smith  </p>
-            <p class="text text--12"> 13, 265, 675 Followers </p>
+          <a :href="d_followed_artist.url" v-for="(d_followed_artist, i) in d_followed_artists" :key="i" class="profile__following-item">
+            <p class="text"> {{ d_followed_artist.name }}  </p>
+            <p class="text text--12"> {{ d_followed_artist.followers }} Followers </p>
           </a>
         </div>
       </div>
@@ -81,6 +73,7 @@
           followers: 0,
           following: 0
         },
+        d_followed_artists: [],
         d_playlist: []
       }
     },
@@ -146,7 +139,7 @@
       logout() {
         const url = 'https://accounts.spotify.com/en/logout'
         // const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')
-        window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')
+        window.open(url, 'Spotify Logout', 'width=550,height=550,top=50,left=50')
         // setTimeout(() => spotifyLogoutWindow.hide(), 1000) doesnt work lol.
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
@@ -183,10 +176,7 @@
                     this.d_access_token = data.access_token
                     // print profile
                     this.print_profile(this.d_access_token)
-                    // get following and print
-                    this.get_user_followed_artists(this.d_access_token)
-                      .then(data => this.d_profile.following = data.artists.items.length)
-                    
+
                     // get playlist and print
                     this.get_user_playlists(this.d_access_token)
                       .then(data => {
@@ -202,6 +192,21 @@
                           this.d_playlist.push(playlist_info)
                           console.log(this.d_playlist)
                         }
+                      })
+                    
+                    // get user followed artists
+                    get_user_followed_artists(this.d_access_token)
+                      .then(data => {
+                        for(let followed_artist of data.artists.items) {
+                          let artist_info = {
+                            name: followed_artist.name,
+                            followers: followed_artist.followers.total,
+                            url: followed_artist.external_urls.spotify
+                          }
+
+                          this.d_followed_artists.push(artist_info)
+                        }
+                        this.d_profile.following = data.artists.items.length
                       })
 
                     // remove loader and display data
