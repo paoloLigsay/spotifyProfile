@@ -195,10 +195,10 @@
                         //     name: playlist.name,
                         //     image: playlist.images[0],
                         //   }
-                          console.log(playlists)
-                          console.log(playlist)
-                          console.log(playlist_info)
-                        }
+                          // console.log(playlists)
+                          // console.log(playlist)
+                          // console.log(playlist_info)
+                        // }
                         // this.d_playlist
                       })
 
