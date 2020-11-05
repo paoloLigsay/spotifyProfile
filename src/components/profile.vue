@@ -191,6 +191,7 @@
                           }
                           // push to data playlits (live change in ui)
                           this.d_playlist.push(playlist_info)
+                          console.log(this.d_playlist)
                         }
                       })
 
