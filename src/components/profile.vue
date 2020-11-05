@@ -195,7 +195,7 @@
                       })
                     
                     // get user followed artists
-                    get_user_followed_artists(this.d_access_token)
+                    this.get_user_followed_artists(this.d_access_token)
                       .then(data => {
                         for(let followed_artist of data.artists.items) {
                           let artist_info = {
