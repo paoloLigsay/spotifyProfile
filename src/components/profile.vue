@@ -187,13 +187,14 @@
                     // get playlist and print
                     this.get_user_playlists(this.d_access_token)
                       .then(data => {
+                        console.log(data)
                         const playlists = data.items
-                        for(let playlist of playlist) {
-                          let playlist_info = {
-                            url: playlist.spotify,
-                            name: playlist.name,
-                            image: playlist.images[0],
-                          }
+                        // for(let playlist of playlist) {
+                        //   let playlist_info = {
+                        //     url: playlist.spotify,
+                        //     name: playlist.name,
+                        //     image: playlist.images[0],
+                        //   }
                           console.log(playlists)
                           console.log(playlist)
                           console.log(playlist_info)
