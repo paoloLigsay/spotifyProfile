@@ -28,16 +28,10 @@
         <div class="profile__data">
           <p class="text text--24"> Public Playlists </p>
           <div class="profile__playlist">
-            <a href="#" class="profile__playlist-item">
-              <img src="" alt="playlist image" class="profile__playlist-img">
-              <p class="text text--21"> Workout Playlist </p>
-              <p class="text"> 8 Tracks </p>
-            </a>
-
-            <a href="#" class="profile__playlist-item">
-              <img src="" alt="playlist image" class="profile__playlist-img">
-              <p class="text text--21"> Workout Playlist </p>
-              <p class="text"> 8 Tracks </p>
+            <a :href="d_playlist_item.url" class="profile__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
+              <img :src="d_playlist_item.image" alt="playlist image" class="profile__playlist-img">
+              <p class="text text--21"> {{ d_playlist_item.name }} </p>
+              <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
             </a>
           </div>
         </div>
@@ -187,22 +181,19 @@
                     // get playlist and print
                     this.get_user_playlists(this.d_access_token)
                       .then(data => {
-                        console.log(data)
-                        // const playlists = data.items
-                        // for(let playlist of playlist) {
-                        //   let playlist_info = {
-                        //     url: playlist.spotify,
-                        //     name: playlist.name,
-                        //     image: playlist.images[0],
-                        //   }
-                          // console.log(playlists)
-                          // console.log(playlist)
-                          // console.log(playlist_info)
-                        // }
-                        // this.d_playlist
+                        // loop each item in playlist items array, then get needed data for each item
+                        for(let playlist of data.items) {
+                          let playlist_info = {
+                            url: playlist.external_urls.spotify,
+                            name: playlist.name,
+                            image: playlist.images[0],
+                            track_count: plalylist.tracks.total
+                          }
+                          // push to data playlits (live change in ui)
+                          this.d_playlist.push(playlist_info)
+                        }
                       })
 
-                    
                     // remove loader and display data
                     const loader = document.querySelector('.loader')
                     const profile = document.querySelector('.profile')
