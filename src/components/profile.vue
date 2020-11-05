@@ -187,7 +187,7 @@
                             url: playlist.external_urls.spotify,
                             name: playlist.name,
                             image: playlist.images[0],
-                            track_count: plalylist.tracks.total
+                            track_count: playlist.tracks.total
                           }
                           // push to data playlits (live change in ui)
                           this.d_playlist.push(playlist_info)
