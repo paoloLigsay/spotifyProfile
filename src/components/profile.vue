@@ -12,7 +12,8 @@
     <div class="profile profile--active">
       <!-- header -->
       <div class="profile__header">
-        <img src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
+        <img v-if="d_profile.image !== null" :src="d_profile.image" alt="Profile Picture" class="profile__image">
+        <img v-else src="../img/profile.png" alt="Profile Picture" class="profile__image profile__image--fallback">
         <div class="profile__header-info">
           <p class="text text--24"> {{ d_profile.type }} </p>
           <h2 class="text text--48"> {{ d_profile.name }} </h2>
@@ -75,6 +76,7 @@
         d_access_token: '',
         d_profile: {
           type: 'not found',
+          image: null,
           name: 'No User Found',
           followers: 0,
           following: 0
@@ -128,6 +130,7 @@
               this.d_profile.name = data.display_name
               this.d_profile.type = data.type
               this.d_profile.followers = data.followers.total
+              this.d_profile.image = data.images[0].url
             }
           )
       },
@@ -218,10 +221,10 @@
       }
 
       // Get URL
-      // this.d_loc = window.location.href
-      // if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
-      //   this.$router.push('login')
-      // }
+      this.d_loc = window.location.href
+      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+        this.$router.push('login')
+      }
     }
   }
 </script>
