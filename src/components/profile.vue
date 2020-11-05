@@ -141,9 +141,9 @@
         ).then(data => data)
       },
       logout() {
-        const logout_holder = document.querySelector('.logout-holder')
-        const logout_iframe = `<iframe style="display: none" src="https://spotify.com/logout"></iframe>`
-        logout_holder.innerHTML = logout_iframe
+        const url = 'https://accounts.spotify.com/en/logout'                                                                                                                                                                                                                                                                               
+        const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=5,height=5,top=1,left=1')                                                                                                
+        setTimeout(() => spotifyLogoutWindow.close(), 1000)
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
       }
