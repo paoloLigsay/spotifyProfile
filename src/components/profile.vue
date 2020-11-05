@@ -140,8 +140,9 @@
       },
       logout() {
         const url = 'https://www.spotify.com/logout/'
-        const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
-        setTimeout(() => spotifyLogoutWindow.close(), 2000)
+        const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=10,height=10, status=no, toolbar=no, menubar=no, location=no, top=1,left=1')
+        spotifyLogoutWindow.blur()
+        spotifyLogoutWindow.close()
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
       }
