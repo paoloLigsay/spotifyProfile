@@ -198,9 +198,12 @@
                     this.get_user_followed_artists(this.d_access_token)
                       .then(data => {
                         for(let followed_artist of data.artists.items) {
+                          // fix followers put ,
+                          const format_followers = followed_artist.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
                           let artist_info = {
                             name: followed_artist.name,
-                            followers: followed_artist.followers.total,
+                            followers: format_followers,
                             url: followed_artist.external_urls.spotify
                           }
 
