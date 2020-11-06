@@ -44,7 +44,7 @@
                <p class="text text--21"> {{ d_track.name }} </p>
                <div class="profile__tracks-artists">
                   <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
-                    {{ artist }}
+                    {{ artist.name }}
                     <span v-if="index != Object.keys(person).length - 1">, </span>
                   </p>
                </div>
@@ -239,22 +239,18 @@
                     this.get_user_tracks(this.d_access_token)
                       .then(data => {
                         for(const track of data.items) {
-                          console.log(track.name)
-                          console.log(track.album.images[0].url,)
-                          console.log(track.duration_ms)
-                          console.log(track.artists)
-                          // const new_track_artists = []
-                          // for(const artist of track.artists)
-                          //   new_track_artists.push(artist.name)
+                          const new_track_artists = []
+                          for(const artist of track.artists)
+                            new_track_artists.push(artist.name)
 
-                          // const duration_min = (track.duration_ms / 1000) / 60
-                          // const duration_sec = (track.duration_ms / 1000) % 60
-                          // const duration_ms = `${duration_min}:${duration_sec}`
+                          const duration_min = (track.duration_ms / 1000) / 60
+                          const duration_sec = (track.duration_ms / 1000) % 60
+                          const duration_ms = `${duration_min}:${duration_sec}`
 
                           let new_track = {
                             name: track.name,
                             image: track.album.images[0].url,
-                            // artists: new_track_artists,
+                            artists: new_track_artists,
                             duration: track.duration_ms
                           }
 
