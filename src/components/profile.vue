@@ -251,7 +251,7 @@
                             name: track.name,
                             image: track.album.images[0].url,
                             artists: new_track_artists,
-                            duration: track.duration_ms
+                            duration: duration_ms
                           }
 
                           this.d_tracks.push(new_track)
