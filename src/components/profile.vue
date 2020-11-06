@@ -243,22 +243,22 @@
                           console.log(track.album.images[0].url,)
                           console.log(track.duration_ms)
                           console.log(track.artists)
-                          // const new_track_artists = []
-                          // for(const artist of track.artists)
-                          //   new_track_artists.push(artist.name)
+                          const new_track_artists = []
+                          for(const artist of track.artists)
+                            new_track_artists.push(artist.name)
 
                           // const duration_min = (track.duration_ms / 1000) / 60
                           // const duration_sec = (track.duration_ms / 1000) % 60
                           // const duration_ms = `${duration_min}:${duration_sec}`
 
-                          // const new_track = {
-                          //   name: track.name,
-                          //   image: track.album.images[0].url,
-                          //   artists: new_track_artists,
-                          //   duration: duration_ms
-                          // }
+                          let new_track = {
+                            name: track.name,
+                            image: track.album.images[0].url,
+                            artists: new_track_artists,
+                            duration: track.duration_ms
+                          }
 
-                          // this.d_tracks.push(new_track)
+                          this.d_tracks.push(new_track)
                         }
                       })
                     // remove loader and display data
