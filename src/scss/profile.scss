@@ -94,4 +94,30 @@
       }
     }
   }
+
+  &__tracks {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+
+    &-img {
+      width: 150px;
+      height: 150px;
+      margin-right: 25px;
+    }
+
+    &-artists {
+      display: flex;
+    }
+
+    &-duration {
+      position: absolute;
+      left: auto;
+      top: auto;
+      right: 0;
+      bottom: 50%;
+    }
+  }
 }

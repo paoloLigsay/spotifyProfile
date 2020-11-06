@@ -40,9 +40,13 @@
           <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
              <img :src="d_track.image" alt="playlist image" class="profile__tracks-img">
              <div class="profile__tracks-info">
+               <p class="text profile__tracks-duration"> {{ d_track.duration }} </p>
                <p class="text text--21"> {{ d_track.name }} </p>
                <div class="profile__tracks-artists">
-                 <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> {{ artist }} </p>
+                  <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
+                    {{ artist }}
+                    <span v-if="index != Object.keys(person).length - 1">, </span>
+                  </p>
                </div>
              </div>
           </a>
@@ -238,6 +242,10 @@
                           const new_track_artists = []
                           for(const artist of track.artists)
                             new_track_artists.push(artist.name)
+
+                          const duration_min = (track.duration_ms / 1000) / 60
+                          const duration_sec = (track.duration_ms / 1000) % 60
+                          const duration_ms = `${duration_min}:${duration_sec}`
 
                           const new_track = {
                             name: track.name,
