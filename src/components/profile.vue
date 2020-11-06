@@ -44,7 +44,7 @@
                <p class="text text--21"> {{ d_track.name }} </p>
                <div class="profile__tracks-artists">
                   <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
-                    {{ artist.name }}
+                    {{ artist }}
                     <span v-if="i != Object.keys(d_track.artists).length - 1">, </span>
                   </p>
                </div>
@@ -243,8 +243,8 @@
                           for(const artist of track.artists)
                             new_track_artists.push(artist.name)
 
-                          const duration_min = (track.duration_ms / 1000) / 60
-                          const duration_sec = (track.duration_ms / 1000) % 60
+                          const duration_min = parseInt((track.duration_ms / 1000) / 60)
+                          const duration_sec = parseInt((track.duration_ms / 1000) % 60)
                           const duration_ms = `${duration_min}:${duration_sec}`
 
                           let new_track = {
