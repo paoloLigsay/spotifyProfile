@@ -249,6 +249,7 @@
 
                           let new_track = {
                             name: track.name,
+                            url: track.external_urls.spotify,
                             image: track.album.images[0].url,
                             artists: new_track_artists,
                             duration: duration_ms
