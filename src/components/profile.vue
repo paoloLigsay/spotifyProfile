@@ -36,20 +36,14 @@
             </a>
           </div>
 
-          <p class="text text--24 text--mt100"> Top Tracks </p>
-          <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
-             <img :src="d_track.image" alt="playlist image" class="profile__tracks-img">
-             <div class="profile__tracks-info">
-               <p class="text profile__tracks-duration"> {{ d_track.duration }} </p>
-               <p class="text text--21"> {{ d_track.name }} </p>
-               <div class="profile__tracks-artists">
-                  <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
-                    {{ artist }}
-                    <span v-if="index != Object.keys(person).length - 1">, </span>
-                  </p>
-               </div>
-             </div>
-          </a>
+          <p class="text text--24 text--mt100"> Public Playlists </p>
+          <div class="profile__playlist">
+            <a :href="d_playlist_item.url" class="profile__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
+              <img :src="d_playlist_item.image" alt="playlist image" class="profile__playlist-img">
+              <p class="text text--21"> {{ d_playlist_item.name }} </p>
+              <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
+            </a>
+          </div>
         </div>
 
         <!-- Followed Artists -->
@@ -86,7 +80,6 @@
           followers: 0,
           following: 0
         },
-        d_tracks: [],
         d_followed_artists: [],
         d_playlist: []
       }
@@ -235,24 +228,7 @@
                           // followed artists length = number of following
                           this.d_profile.following = data.artists.items.length
                       })
-                    // get tracks
-                    this.get_user_tracks(this.d_access_token)
-                      .then(data => {
-                        for(const track of data.items) {
-                          const new_track_artists = []
-                          for(const artist of track.artists)
-                            new_track_artists.push(artist.name)
 
-                          const new_track = {
-                            name: track.name,
-                            image: track.album.images[0].url,
-                            artists: new_track_artists,
-                            duration: track.duration_ms
-                          }
-
-                          this.d_tracks.push(new_track)
-                        }
-                      })
                     // remove loader and display data
                     const loader = document.querySelector('.loader')
                     const profile = document.querySelector('.profile')
