@@ -239,22 +239,23 @@
                     this.get_user_tracks(this.d_access_token)
                       .then(data => {
                         for(const track of data.items) {
-                          const new_track_artists = []
-                          for(const artist of track.artists)
-                            new_track_artists.push(artist.name)
+                          console.log(track)
+                          // const new_track_artists = []
+                          // for(const artist of track.artists)
+                          //   new_track_artists.push(artist.name)
 
-                          const duration_min = (track.duration_ms / 1000) / 60
-                          const duration_sec = (track.duration_ms / 1000) % 60
-                          const duration_ms = `${duration_min}:${duration_sec}`
+                          // const duration_min = (track.duration_ms / 1000) / 60
+                          // const duration_sec = (track.duration_ms / 1000) % 60
+                          // const duration_ms = `${duration_min}:${duration_sec}`
 
-                          const new_track = {
-                            name: track.name,
-                            image: track.album.images[0].url,
-                            artists: new_track_artists,
-                            duration: duration_ms
-                          }
+                          // const new_track = {
+                          //   name: track.name,
+                          //   image: track.album.images[0].url,
+                          //   artists: new_track_artists,
+                          //   duration: duration_ms
+                          // }
 
-                          this.d_tracks.push(new_track)
+                          // this.d_tracks.push(new_track)
                         }
                       })
                     // remove loader and display data
