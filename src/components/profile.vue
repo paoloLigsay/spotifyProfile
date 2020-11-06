@@ -244,8 +244,8 @@
                           console.log(track.duration_ms)
                           console.log(track.artists)
                           const new_track_artists = []
-                          for(const artist of track.artists)
-                            new_track_artists.push(artist.name)
+                          // for(const artist of track.artists)
+                          //   new_track_artists.push(artist.name)
 
                           // const duration_min = (track.duration_ms / 1000) / 60
                           // const duration_sec = (track.duration_ms / 1000) % 60
@@ -254,7 +254,7 @@
                           let new_track = {
                             name: track.name,
                             image: track.album.images[0].url,
-                            artists: new_track_artists,
+                            // artists: new_track_artists,
                             duration: track.duration_ms
                           }
 
