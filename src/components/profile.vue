@@ -243,7 +243,7 @@
                           console.log(track.album.images[0].url,)
                           console.log(track.duration_ms)
                           console.log(track.artists)
-                          const new_track_artists = []
+                          // const new_track_artists = []
                           // for(const artist of track.artists)
                           //   new_track_artists.push(artist.name)
 
