@@ -37,12 +37,12 @@
           </div>
 
           <p class="text text--24 text--mt100"> Top Tracks </p>
-          <a :href="d_tracks.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
-             <img :src="d_tracks.image" alt="playlist image" class="profile__tracks-img">
+          <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
+             <img :src="d_track.image" alt="playlist image" class="profile__tracks-img">
              <div class="profile__tracks-info">
-               <p class="text text--21"> {{ d_tracks.name }} </p>
+               <p class="text text--21"> {{ d_track.name }} </p>
                <div class="profile__tracks-artists">
-                 <p class="text" v-for="(artist, i) in d_tracks.artists" :key="i"> {{ artist }} </p>
+                 <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> {{ artist }} </p>
                </div>
              </div>
           </a>
