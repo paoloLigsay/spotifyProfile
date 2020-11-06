@@ -36,14 +36,16 @@
             </a>
           </div>
 
-          <p class="text text--24 text--mt100"> Public Playlists </p>
-          <div class="profile__playlist">
-            <a :href="d_playlist_item.url" class="profile__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
-              <img :src="d_playlist_item.image" alt="playlist image" class="profile__playlist-img">
-              <p class="text text--21"> {{ d_playlist_item.name }} </p>
-              <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
-            </a>
-          </div>
+          <p class="text text--24 text--mt100"> Top Tracks </p>
+          <a :href="d_tracks.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
+             <img :src="d_tracks.image" alt="playlist image" class="profile__tracks-img">
+             <div class="profile__tracks-info">
+               <p class="text text--21"> {{ d_tracks.name }} </p>
+               <div class="profile__tracks-artists">
+                 <p class="text" v-for="(artist, i) in d_tracks.artists" :key="i"> {{ artist }} </p>
+               </div>
+             </div>
+          </a>
         </div>
 
         <!-- Followed Artists -->
@@ -80,6 +82,7 @@
           followers: 0,
           following: 0
         },
+        d_tracks: [],
         d_followed_artists: [],
         d_playlist: []
       }
@@ -230,8 +233,21 @@
                       })
                     // get tracks
                     this.get_user_tracks(this.d_access_token)
-                      .then(data=>{
-                        console.log(data)
+                      .then(data => {
+                        for(const track of data.items) {
+                          const new_track_artists = []
+                          for(const artist of track.artists)
+                            new_track_artists.push(artist.name)
+
+                          const new_track = {
+                            name: track.name,
+                            image: track.album.images[0].url,
+                            artists: new_track_artists,
+                            duration: track.duration_ms
+                          }
+
+                          this.d_tracks.push(new_track)
+                        }
                       })
                     // remove loader and display data
                     const loader = document.querySelector('.loader')
