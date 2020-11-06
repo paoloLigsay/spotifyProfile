@@ -45,6 +45,7 @@
 
   &__content {
     width: 100%;
+    padding-bottom: 75px;
     display: flex;
     justify-content: space-between;
   }
@@ -110,6 +111,10 @@
 
     &-artists {
       display: flex;
+
+      span {
+        margin-right: 2px;
+      }
     }
 
     &-duration {

@@ -112,34 +112,38 @@
         })
       },
       get_user_followed_artists(local_access_token) {
-        return fetch("https://api.spotify.com/v1/me/following?type=artist", {
+        fetch("https://api.spotify.com/v1/me/following?type=artist", {
           headers: {
             Authorization: `Bearer ${local_access_token}`
           }
-        }).then(
-          res => res.json()
-        ).then(data => data)
+        })
+          .then(res => res.json())
+          .then(data => data)
+          .then(
+            data => {
+              for(let followed_artist of data.artists.items) {
+                // fix followers number format : 1234 -> 1,234
+                const format_followers = followed_artist.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                // create new artist
+                let artist_info = {
+                  name: followed_artist.name,
+                  followers: format_followers,
+                  url: followed_artist.external_urls.spotify
+                }
+                // push new artist to followed artists
+                this.d_followed_artists.push(artist_info)
+              }
+              // followed artists length = number of following
+              this.d_profile.following = data.artists.items.length
+          })
       },
       get_profile(local_access_token) {
-        return fetch("https://api.spotify.com/v1/me", {
+        fetch("https://api.spotify.com/v1/me", {
           headers: {
             Authorization: `Bearer ${local_access_token}`
           }
-        }).then(
-          res => res.json()
-        ).then(data => data)
-      },
-      get_user_tracks(local_access_token) {
-        return fetch("https://api.spotify.com/v1/me/top/tracks", {
-          headers: {
-            Authorization: `Bearer ${local_access_token}`
-          }
-        }).then(
-          res => res.json()
-        ).then(data => data)
-      },
-      print_profile(access_token) {
-        this.get_profile(access_token)
+        })
+          .then(res => res.json())
           .then(
             data => {
               this.d_profile.name = data.display_name
@@ -149,14 +153,62 @@
             }
           )
       },
-      get_user_playlists (local_access_token) {
-        return fetch("https://api.spotify.com/v1/me/playlists", {
+      get_user_tracks(local_access_token) {
+        return fetch("https://api.spotify.com/v1/me/top/tracks", {
           headers: {
             Authorization: `Bearer ${local_access_token}`
           }
-        }).then(
-          res => res.json()
-        ).then(data => data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          for(const track of data.items) {
+            const new_track_artists = []
+            for(const artist of track.artists)
+              new_track_artists.push(artist.name)
+
+            const duration_min = parseInt((track.duration_ms / 1000) / 60)
+            const duration_sec = parseInt((track.duration_ms / 1000) % 60)
+            const duration_ms = `${duration_min}:${duration_sec}`
+
+            let new_track = {
+              name: track.name,
+              url: track.external_urls.spotify,
+              image: track.album.images[0].url,
+              artists: new_track_artists,
+              duration: duration_ms
+            }
+
+            this.d_tracks.push(new_track)
+          }
+        })
+      },
+      get_user_playlists (local_access_token) {
+        fetch("https://api.spotify.com/v1/me/playlists", {
+          headers: {
+            Authorization: `Bearer ${local_access_token}`
+          }
+        })
+          .then(res => res.json())
+          .then(
+            data => {
+              // loop each item in playlist items array, then get needed data for each item
+              for(let playlist of data.items) {
+                let playlist_info = {
+                  url: playlist.external_urls.spotify,
+                  name: playlist.name,
+                  image: playlist.images[0].url,
+                  track_count: playlist.tracks.total
+                }
+                // push to data playlits (live change in ui)
+                this.d_playlist.push(playlist_info)
+              }
+          })
+      },
+      remove_loader() {
+        const loader = document.querySelector('.loader')
+        const profile = document.querySelector('.profile')
+        loader.classList.add('loader--done')
+        profile.classList.add('profile--active')
       },
       logout() {
         const url = 'https://accounts.spotify.com/en/logout'
@@ -197,71 +249,13 @@
                     // set local storage to save data (token) on reload
                     localStorage.setItem('local_token_new4', data.access_token)
                     this.d_access_token = data.access_token
-                    // print profile
-                    this.print_profile(this.d_access_token)
-                    // get playlist and print
+
+                    // print profile, playlist, followed artist and tracks
+                    this.get_profile(this.d_access_token)
                     this.get_user_playlists(this.d_access_token)
-                      .then(
-                        data => {
-                          // loop each item in playlist items array, then get needed data for each item
-                          for(let playlist of data.items) {
-                            let playlist_info = {
-                              url: playlist.external_urls.spotify,
-                              name: playlist.name,
-                              image: playlist.images[0].url,
-                              track_count: playlist.tracks.total
-                            }
-                            // push to data playlits (live change in ui)
-                            this.d_playlist.push(playlist_info)
-                          }
-                      })
-                    // get user followed artists
                     this.get_user_followed_artists(this.d_access_token)
-                      .then(
-                        data => {
-                          for(let followed_artist of data.artists.items) {
-                            // fix followers number format : 1234 -> 1,234
-                            const format_followers = followed_artist.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                            // create new artist
-                            let artist_info = {
-                              name: followed_artist.name,
-                              followers: format_followers,
-                              url: followed_artist.external_urls.spotify
-                            }
-                            // push new artist to followed artists
-                            this.d_followed_artists.push(artist_info)
-                          }
-                          // followed artists length = number of following
-                          this.d_profile.following = data.artists.items.length
-                      })
-                    // get tracks
                     this.get_user_tracks(this.d_access_token)
-                      .then(data => {
-                        for(const track of data.items) {
-                          const new_track_artists = []
-                          for(const artist of track.artists)
-                            new_track_artists.push(artist.name)
-
-                          const duration_min = parseInt((track.duration_ms / 1000) / 60)
-                          const duration_sec = parseInt((track.duration_ms / 1000) % 60)
-                          const duration_ms = `${duration_min}:${duration_sec}`
-
-                          let new_track = {
-                            name: track.name,
-                            url: track.external_urls.spotify,
-                            image: track.album.images[0].url,
-                            artists: new_track_artists,
-                            duration: duration_ms
-                          }
-
-                          this.d_tracks.push(new_track)
-                        }
-                      })
-                    // remove loader and display data
-                    const loader = document.querySelector('.loader')
-                    const profile = document.querySelector('.profile')
-                    loader.classList.add('loader--done')
-                    profile.classList.add('profile--active')
+                    this.remove_loader()
                   }
                 ).catch(
                   () => this.$router.push('login')
