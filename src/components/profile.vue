@@ -6,8 +6,6 @@
     <!-- loader -->
     <span class="loader loader--done"></span>
 
-    <div class="logout-holder"></div>
-
     <!-- component -->
     <div class="profile profile--active">
       <!-- header -->
@@ -30,6 +28,15 @@
         <!-- profile playlists and tracts -->
         <div class="profile__data">
           <p class="text text--24"> Public Playlists </p>
+          <div class="profile__playlist">
+            <a :href="d_playlist_item.url" class="profile__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
+              <img :src="d_playlist_item.image" alt="playlist image" class="profile__playlist-img">
+              <p class="text text--21"> {{ d_playlist_item.name }} </p>
+              <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
+            </a>
+          </div>
+
+          <p class="text text--24 text--mt100"> Public Playlists </p>
           <div class="profile__playlist">
             <a :href="d_playlist_item.url" class="profile__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
               <img :src="d_playlist_item.image" alt="playlist image" class="profile__playlist-img">
@@ -116,6 +123,15 @@
           res => res.json()
         ).then(data => data)
       },
+      get_user_tracks(local_access_token) {
+        return fetch("https://api.spotify.com/v1/me/top/tracks", {
+          headers: {
+            Authorization: `Bearer ${local_access_token}`
+          }
+        }).then(
+          res => res.json()
+        ).then(data => data)
+      },
       print_profile(access_token) {
         this.get_profile(access_token)
           .then(
@@ -138,11 +154,12 @@
       },
       logout() {
         const url = 'https://accounts.spotify.com/en/logout'
-        // const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')
         window.open(url, 'Spotify Logout', 'width=550,height=550,top=50,left=50')
-        // setTimeout(() => spotifyLogoutWindow.hide(), 1000) doesnt work lol.
         localStorage.removeItem('local_token_new4')
         window.location.href = 'https://yourspotifyprofile.netlify.app/'
+        // doesn't work lol : 
+        // const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=55,height=55,top=1,left=1')
+        // setTimeout(() => spotifyLogoutWindow.hide(), 1000)
       }
     },
     created() {
@@ -176,42 +193,46 @@
                     this.d_access_token = data.access_token
                     // print profile
                     this.print_profile(this.d_access_token)
-
                     // get playlist and print
                     this.get_user_playlists(this.d_access_token)
-                      .then(data => {
-                        // loop each item in playlist items array, then get needed data for each item
-                        for(let playlist of data.items) {
-                          let playlist_info = {
-                            url: playlist.external_urls.spotify,
-                            name: playlist.name,
-                            image: playlist.images[0].url,
-                            track_count: playlist.tracks.total
+                      .then(
+                        data => {
+                          // loop each item in playlist items array, then get needed data for each item
+                          for(let playlist of data.items) {
+                            let playlist_info = {
+                              url: playlist.external_urls.spotify,
+                              name: playlist.name,
+                              image: playlist.images[0].url,
+                              track_count: playlist.tracks.total
+                            }
+                            // push to data playlits (live change in ui)
+                            this.d_playlist.push(playlist_info)
                           }
-                          // push to data playlits (live change in ui)
-                          this.d_playlist.push(playlist_info)
-                          console.log(this.d_playlist)
-                        }
                       })
-                    
                     // get user followed artists
                     this.get_user_followed_artists(this.d_access_token)
-                      .then(data => {
-                        for(let followed_artist of data.artists.items) {
-                          // fix followers put ,
-                          const format_followers = followed_artist.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-                          let artist_info = {
-                            name: followed_artist.name,
-                            followers: format_followers,
-                            url: followed_artist.external_urls.spotify
+                      .then(
+                        data => {
+                          for(let followed_artist of data.artists.items) {
+                            // fix followers number format : 1234 -> 1,234
+                            const format_followers = followed_artist.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                            // create new artist
+                            let artist_info = {
+                              name: followed_artist.name,
+                              followers: format_followers,
+                              url: followed_artist.external_urls.spotify
+                            }
+                            // push new artist to followed artists
+                            this.d_followed_artists.push(artist_info)
                           }
-
-                          this.d_followed_artists.push(artist_info)
-                        }
-                        this.d_profile.following = data.artists.items.length
+                          // followed artists length = number of following
+                          this.d_profile.following = data.artists.items.length
                       })
-
+                    // get tracks
+                    this.get_user_tracks(this.d_access_token)
+                      .then(data=>{
+                        console.log(data)
+                      })
                     // remove loader and display data
                     const loader = document.querySelector('.loader')
                     const profile = document.querySelector('.profile')
@@ -229,15 +250,11 @@
         this.print_profile(permanent_token)
       }
 
-      // Get URL
-      this.d_loc = window.location.href
-      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
-        this.$router.push('login')
-      }
+      // Get URL and check if user is trying to access page during logout (redirect to login)
+      // this.d_loc = window.location.href
+      // if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+      //   this.$router.push('login')
+      // }
     }
   }
 </script>
-
-<style scoped>
-  /*  */
-</style>
