@@ -45,7 +45,7 @@
                <div class="profile__tracks-artists">
                   <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
                     {{ artist.name }}
-                    <span v-if="index != Object.keys(person).length - 1">, </span>
+                    <span v-if="i != Object.keys(d_track.artists).length - 1">, </span>
                   </p>
                </div>
              </div>
