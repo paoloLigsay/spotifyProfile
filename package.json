@@ -39,7 +39,11 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "vue/no-use-v-if-with-v-for": ["error", {
+          "allowUsingIterationVar": true
+      }]
+    }
   },
   "browserslist": [
     "> 1%",

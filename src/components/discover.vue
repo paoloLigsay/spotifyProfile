@@ -10,8 +10,8 @@
     <div class="discover">
       <h2> DISCOVER </h2>
        <p class="text text--24"> Featured Playlists </p>
-       <div v-if="i < show_more_featured" class="discover__playlist">
-        <a :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
+       <div class="discover__playlist">
+        <a v-if="i < show_more_featured" :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
           <img :src="d_playlist_item.image" alt="playlist image" class="discover__playlist-img">
           <p class="text text--21"> {{ d_playlist_item.name }} by {{ d_playlist_item.owner }} </p>
           <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
@@ -20,8 +20,8 @@
       <div v-if="d_playlist.length > 8" v-on:click="show_more_featured += 6" class="btn"> See more </div>
 
       <p class="text text--24"> New Releases </p>
-       <div v-if="i < show_more_album" class="discover__playlist">
-        <a :href="d_album.url" class="discover__playlist-item" v-for="(d_album, i) in d_albums" :key="i">
+       <div class="discover__playlist">
+        <a v-if="i < show_more_album" :href="d_album.url" class="discover__playlist-item" v-for="(d_album, i) in d_albums" :key="i">
           <img :src="d_album.image" alt="playlist image" class="discover__playlist-img">
           <p class="text text--21"> {{ d_album.name }} </p>
           <p class="text text--21"> {{ d_album.type }} </p>
