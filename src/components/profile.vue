@@ -38,18 +38,20 @@
           <router-link class="btn" to="/playlist"> See more </router-link>
 
           <p class="text text--24 text--mt100"> Top Tracks </p>
-          <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
-             <img :src="d_track.image" alt="playlist image" class="profile__tracks-img">
-             <div class="profile__tracks-info">
-               <p class="text profile__tracks-duration"> {{ d_track.duration }} </p>
-               <p class="text text--21"> {{ d_track.name }} </p>
-               <div class="profile__tracks-artists">
-                  <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
-                    {{ artist }}<span v-if="i != Object.keys(d_track.artists).length - 1">, </span> 
-                  </p>
-               </div>
-             </div>
-          </a>
+          <div class="profile__tracks-list">
+            <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
+                <img :src="d_track.image" alt="playlist image" class="profile__tracks-img">
+                <div class="profile__tracks-info">
+                  <p class="text profile__tracks-duration"> {{ d_track.duration }} </p>
+                  <p class="text text--21"> {{ d_track.name }} </p>
+                  <div class="profile__tracks-artists">
+                      <p class="text" v-for="(artist, i) in d_track.artists" :key="i"> 
+                        {{ artist }}<span v-if="i != Object.keys(d_track.artists).length - 1">, </span> 
+                      </p>
+                  </div>
+                </div>
+              </a>
+          </div>
           <router-link class="btn" to="/tracks"> See more </router-link>
         </div>
 
