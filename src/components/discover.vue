@@ -17,7 +17,7 @@
           <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
         </a>
       </div>
-      <div v-if="d_playlist.length > 8" v-on:click="show_more_featured += 6" class="btn"> See more </div>
+      <div v-if="d_playlist.length > 8 && show_more_featured < d_playlist.length" v-on:click="show_more_featured += 6" class="btn"> See more </div>
 
       <p class="text text--24"> New Releases </p>
        <div class="discover__playlist">
@@ -32,7 +32,7 @@
           </div>
         </a>
       </div>
-       <div v-if="d_albums.length > 8" v-on:click="show_more_album += 6" class="btn"> See more </div>
+       <div v-if="d_albums.length > 8 && show_more_album < d_albums.length" v-on:click="show_more_album += 6" class="btn"> See more </div>
     </div>
 
   </div>
