@@ -272,9 +272,7 @@
         this.get_user_playlists(permanent_token)
         this.get_user_followed_artists(permanent_token)
         this.get_user_tracks(permanent_token)
-
-        // remove loader
-        // this.remove_loader()
+          .then(() => this.remove_loader())
       }
     }
   }
