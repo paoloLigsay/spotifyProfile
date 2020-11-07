@@ -6,6 +6,12 @@
     padding-top: 120px;
   }
 
+  h2 {
+    font-size: 4.8rem;
+    color: $gray;
+    margin-bottom: 65px;
+  }
+
   &--active {
     opacity: 1;
     visibility: visible;
@@ -25,10 +31,10 @@
 
     &-item {
       width: 100%;
-      max-width: 250px;
+      max-width: 260px;
       display: flex;
       flex-direction: column;
-      margin-right: 30px;
+      margin: 30px 30px 0 0;
       @include sp {
         max-width: 1000px;
         margin-top: 20px;
