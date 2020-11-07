@@ -4,10 +4,10 @@
     <sidebar/>
 
     <!-- loader -->
-    <span class="loader loader--done"></span>
+    <span class="loade"></span>
 
     <!-- component -->
-    <div class="profile profile--active">
+    <div class="profile">
       <!-- header -->
       <div class="profile__header">
         <img v-if="d_profile.image !== null" :src="d_profile.image" alt="Profile Picture" class="profile__image">
@@ -35,6 +35,7 @@
               <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
             </a>
           </div>
+          <router-link class="btn" to="/playlist"> See more </router-link>
 
           <p class="text text--24 text--mt100"> Top Tracks </p>
           <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
@@ -49,6 +50,7 @@
                </div>
              </div>
           </a>
+          <router-link class="btn" to="/tracks"> See more </router-link>
         </div>
 
         <!-- Followed Artists -->

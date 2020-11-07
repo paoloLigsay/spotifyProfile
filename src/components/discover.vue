@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h2> Discover </h2>
+     <!-- sidebar -->
+    <sidebar/>
+
+    <!-- loader -->
+    <span class="loader loader--done"></span>
+
+    <!-- component -->
+    <h2> DISCOVER </h2>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'user'
+    name: 'discover'
   }
 </script>
 

@@ -12,10 +12,9 @@ Vue.use(VueRouter)
 
 const routes = [
   { 
-    path: '/discover/:access_token',
+    path: '/discover/',
     name: discover,
     component: discover,
-    props: true
   },
   {
     path: '/login',
