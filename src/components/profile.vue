@@ -263,8 +263,10 @@
                     this.remove_loader()
                   }
                 ).catch(
-                  () => this.$router.push('login')
-                )
+                  () => {
+                    localStorage.removeItem('local_token_new4')
+                    this.$router.push('login')
+                  })
             }
           ) 
       } else if(localStorage.getItem('local_token_new4') !== null) {
@@ -274,7 +276,17 @@
         this.get_user_playlists(permanent_token)
         this.get_user_followed_artists(permanent_token)
         this.get_user_tracks(permanent_token)
-          .then(() => this.remove_loader())
+          .then(res => {
+            if (res.ok) {
+              () => this.remove_loader()
+            } else {
+              throw new Error('Please Login. No Token Stored.');
+            }
+          })
+          .catch(() => {
+            localStorage.removeItem('local_token_new4')
+            this.$router.push('login')
+          })
       }
 
       // Get URL
