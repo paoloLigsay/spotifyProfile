@@ -30,6 +30,9 @@
     font-size: 10px;
     font-family: Calibri;
     background-color: $secondary;
+    @include sp {
+      overflow-x: hidden;
+    }
   }
 
   ul {
@@ -56,10 +59,12 @@
   align-items: center;
   @include sp {
     width: 100vw;
-    height: 30px;
+    height: 60px;
     padding: 10px 20px;
+    z-index: 9;
     flex-direction: row;
     justify-content: space-between;
+    background-color: #100f0faa;
   }
 
   &__text {
@@ -70,6 +75,7 @@
     width: 50%;
     @include sp {
       height: 85%;
+      width: auto;
     }
   }
 
@@ -125,7 +131,7 @@
   height: 300px;
   padding: 50px 0 0 100px;
   @include sp {
-    padding-left: 0;
+    padding: 120px 0 0 0;
   }
 
   &__content {
