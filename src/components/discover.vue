@@ -25,7 +25,7 @@
           <p class="text text--21"> {{ d_album.name }} /// {{ d_album.type }} </p>
           <div class="discover__playlist-artists">
               <p class="text" v-for="(artist, i) in d_album.artists" :key="i"> 
-                {{ artist }}<span v-if="i != Object.keys(d_track.artists).length - 1">, </span> 
+                {{ artist }}<span v-if="i != Object.keys(d_album.artists).length - 1">, </span> 
               </p>
           </div>
         </a>
