@@ -4,7 +4,7 @@
     <sidebar/>
 
     <!-- loader -->
-    <span class="loader loader--done"></span>
+    <span class="loader"></span>
 
     <!-- component -->
     <div class="discover">
@@ -57,8 +57,16 @@
               }
 
               this.d_playlist.push(new_playlist)
+              // remove loader after fetching featured playlist
+              this.remove_loader()
             }
           })
+      },
+      remove_loader() {
+        const loader = document.querySelector('.loader')
+        const discover = document.querySelector('.discover')
+        loader.classList.add('loader--done')
+        discover.classList.add('discover--active')
       }
     },
     created() {
