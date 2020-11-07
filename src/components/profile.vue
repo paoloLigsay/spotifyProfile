@@ -283,6 +283,8 @@
         this.get_user_playlists(permanent_token)
         this.get_user_followed_artists(permanent_token)
         this.get_user_tracks(permanent_token)
+
+        // to remove loader after fetching data above annd catch if user logout already
         this.fake_fetch(permanent_token)
           .then(res => {
             if (res.ok) {
