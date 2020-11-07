@@ -11,18 +11,20 @@
       <h2> DISCOVER </h2>
        <p class="text text--24"> Featured Playlists </p>
        <div class="discover__playlist">
-        <a :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
+        <a v-if="i < show_more_featured" :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
           <img :src="d_playlist_item.image" alt="playlist image" class="discover__playlist-img">
           <p class="text text--21"> {{ d_playlist_item.name }} by {{ d_playlist_item.owner }} </p>
           <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
         </a>
       </div>
+      <div v-if="d_playlist.length > 8" v-on:click="show_more_featured += 6" class="btn"> See more </div>
 
       <p class="text text--24"> New Releases </p>
        <div class="discover__playlist">
-        <a :href="d_album.url" class="discover__playlist-item" v-for="(d_album, i) in d_albums" :key="i">
+        <a v-if="i < show_more_album" :href="d_album.url" class="discover__playlist-item" v-for="(d_album, i) in d_albums" :key="i">
           <img :src="d_album.image" alt="playlist image" class="discover__playlist-img">
-          <p class="text text--21"> {{ d_album.name }} /// {{ d_album.type }} </p>
+          <p class="text text--21"> {{ d_album.name }} </p>
+          <p class="text text--21"> {{ d_album.type }} </p>
           <div class="discover__playlist-artists">
               <p class="text" v-for="(artist, i) in d_album.artists" :key="i"> 
                 {{ artist }}<span v-if="i != Object.keys(d_album.artists).length - 1">, </span> 
@@ -30,6 +32,7 @@
           </div>
         </a>
       </div>
+       <div v-if="d_albums.length > 8" v-on:click="show_more_album += 6" class="btn"> See more </div>
     </div>
 
   </div>
@@ -46,7 +49,9 @@
     data() {
       return {
          d_playlist: [],
-         d_albums: []
+         d_albums: [],
+         show_more_featured: 6,
+         show_more_album: 6
       }
     },
     methods: {
@@ -111,6 +116,12 @@
       const permanent_token = localStorage.getItem('local_token_new4')
       this.get_featured_playlist(permanent_token)
       this.get_new_release(permanent_token)
+
+      // Get URL and redirect if not logged in
+      this.d_loc = window.location.href
+      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+        this.$router.push('login')
+      }
     }
   }
 </script>
