@@ -4,10 +4,17 @@
   padding-right: 100px;
   @include center;
   flex-direction: column;
+  @include sp {
+    padding-right: 0%;
+    height: 100vh;
+  }
 
   h2 {
-    font-size: 60px;
+    font-size: 6rem;
     margin-bottom: 25px;
+    @include sp {
+      font-size: 3rem;
+    }
   }
 
   a.btn {

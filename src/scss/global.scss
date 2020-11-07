@@ -54,6 +54,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  @include sp {
+    width: 100vw;
+    height: 30px;
+    padding: 10px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   &__text {
     font-size: 1.4rem;
@@ -61,6 +68,9 @@
 
   &__logo {
     width: 50%;
+    @include sp {
+      height: 85%;
+    }
   }
 
   &__list {
@@ -68,6 +78,9 @@
     margin-top: 75px;
     display: flex;
     flex-direction: column;
+    @include sp {
+      display: none;
+    }
   }
 
   &__item {
@@ -111,6 +124,9 @@
   width: 100%;
   height: 300px;
   padding: 50px 0 0 100px;
+  @include sp {
+    padding-left: 0;
+  }
 
   &__content {
     width: 90%;
@@ -166,6 +182,9 @@
     background-color: $primary;
     font-size: 1.8rem;
     padding: 10px 50px;
+    @include sp {
+      font-size: 1.4rem;
+    }
 
     &:hover {
       background-color: $shade;

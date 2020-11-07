@@ -37,7 +37,6 @@
           <p class="sidebar__text"> Playlists </p>
         </li>
       </router-link>
-
     </ul>
   </div>
 </template>
