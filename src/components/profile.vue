@@ -277,20 +277,21 @@
         this.get_user_followed_artists(permanent_token)
         this.get_user_tracks(permanent_token)
           .then(res => {
+            console.log(res)
             if (res.ok) {
               return res.json()
             } else {
               throw new Error('Please Login. No Token Stored.');
             }
           })
-          .then(
-            () => this.remove_loader()
-          )
-          .catch(() => {
-            localStorage.removeItem('local_token_new4')
-            alert('this one')
-            this.$router.push('login')
-          })
+          // .then(
+          //   () => this.remove_loader()
+          // )
+          // .catch(() => {
+          //   localStorage.removeItem('local_token_new4')
+          //   alert('this one')
+          //   this.$router.push('login')
+          // })
       }
 
       // Get URL
