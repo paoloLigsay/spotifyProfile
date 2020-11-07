@@ -1,6 +1,9 @@
 .profile {
   opacity: 0;
   visibility: hidden;
+  @include sp {
+    padding-top: 120px;
+  }
 
   &--active {
     opacity: 1;
