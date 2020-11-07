@@ -50,7 +50,7 @@
             for(let playlist of playlists) {
               const new_playlist = {
                 name: playlist.name,
-                image: playlist.images[0].url.spotify,
+                image: playlist.images[0].url,
                 owner: playlist.owner.display_name,
                 track_count: playlist.tracks.total,
                 url: playlist.external_urls.spotify
