@@ -274,7 +274,7 @@
         this.get_user_tracks(permanent_token)
 
         // remove loader
-        this.remove_loader()
+        // this.remove_loader()
       }
     }
   }
