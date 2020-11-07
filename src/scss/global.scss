@@ -175,17 +175,19 @@
 }
 
 .loader {
-  position: absolute;
+  position: fixed;
   left: auto;
   top: auto;
-  right: 50%;
+  right: 45%;
   bottom: 50%;
-  transform: translate(50%, 50%);
+  transform: translateY(50%);
   width: 30px;
   height: 30px;
   border: 2px solid $white;
   animation: loader 2s infinite;
-  transition: all 300s ease;
+  transition: all 300ms ease;
+  opacity: 1;
+  visibility: visible;
 
   &--done {
     opacity: 0;
