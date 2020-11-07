@@ -10,8 +10,7 @@
 <script>
   export default {
     created() {
-      // Get URL and check if user is trying to access login page during login (redirect to profile)
-      const url = window.location.href
+      // check if user is trying to access login page during login (redirect to profile)
       if(localStorage.getItem('local_token_new4') !== null) {
         this.$router.push('profile')
       }
