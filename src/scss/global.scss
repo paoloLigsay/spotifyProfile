@@ -194,3 +194,12 @@
     visibility: hidden;
   }
 }
+
+.footer {
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 50%;
+  bottom: 30px;
+  transform: translateX(50%);
+}
