@@ -274,6 +274,12 @@
         this.get_user_tracks(permanent_token)
           .then(() => this.remove_loader())
       }
+
+      // Get URL
+      this.d_loc = window.location.href
+      if(this.d_loc.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
+        this.$router.push('login')
+      }
     }
   }
 </script>
