@@ -17,6 +17,19 @@
           <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
         </a>
       </div>
+
+      <p class="text text--24"> New Releases </p>
+       <div class="discover__playlist">
+        <a :href="d_album.url" class="discover__playlist-item" v-for="(d_album, i) in d_albums" :key="i">
+          <img :src="d_album.image" alt="playlist image" class="discover__playlist-img">
+          <p class="text text--21"> {{ d_album.name }} /// {{ d_album.type }} </p>
+          <div class="discover__playlist-artists">
+              <p class="text" v-for="(artist, i) in d_album.artists" :key="i"> 
+                {{ artist }}<span v-if="i != Object.keys(d_track.artists).length - 1">, </span> 
+              </p>
+          </div>
+        </a>
+      </div>
     </div>
 
   </div>
@@ -32,7 +45,8 @@
     },
     data() {
       return {
-         d_playlist: []
+         d_playlist: [],
+         d_albums: []
       }
     },
     methods: {
@@ -67,7 +81,24 @@
           }
         })
           .then( res => res.json())
-          .then(data => { console.log(data) })
+          .then(data => { 
+            const albums = data.albums.items
+            for(let album of albums) {
+              const new_album_artists = []
+              for(const artist of album.artists)
+                new_track_artists.push(artist.name)
+
+              const new_album = {
+                name: album.name,
+                type: album.album_type,
+                artists: new_album_artists,
+                image: album.images[0].url,
+                url: album.external_urls.spotify
+              }
+
+              this.d_albums.push(new_album)
+            }
+           })
       },
       remove_loader() {
         const loader = document.querySelector('.loader')
