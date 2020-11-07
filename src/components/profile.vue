@@ -278,11 +278,14 @@
         this.get_user_tracks(permanent_token)
           .then(res => {
             if (res.ok) {
-              () => this.remove_loader()
+              return res.json()
             } else {
               throw new Error('Please Login. No Token Stored.');
             }
           })
+          .then(
+            () => this.remove_loader()
+          )
           .catch(() => {
             localStorage.removeItem('local_token_new4')
             alert('this one')
