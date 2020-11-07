@@ -254,6 +254,8 @@
                     this.get_user_playlists(this.d_access_token)
                     this.get_user_followed_artists(this.d_access_token)
                     this.get_user_tracks(this.d_access_token)
+
+                    // remove loader
                     this.remove_loader()
                   }
                 ).catch(
@@ -263,8 +265,14 @@
           ) 
       } else if(localStorage.getItem('local_token_new4') !== null) {
         const permanent_token = localStorage.getItem('local_token_new4')
-        // print profile
-        this.print_profile(permanent_token)
+        // print profile, playlist, followed artist and tracks
+        this.get_profile(permanent_token)
+        this.get_user_playlists(permanent_token)
+        this.get_user_followed_artists(permanent_token)
+        this.get_user_tracks(permanent_token)
+
+        // remove loader
+        this.remove_loader()
       }
     }
   }
