@@ -64,7 +64,8 @@
     z-index: 9;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #100f0faa;
+    background-color: #100f0fde;
+    backdrop-filter: blur(8px);
   }
 
   &__text {

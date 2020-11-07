@@ -69,6 +69,7 @@
     @include sp {
       margin-top: 0;
       width: 100%;
+      flex-direction: column;
     }
 
     &-item {
@@ -186,7 +187,8 @@
       transform: translateY(50%);
       @include sp {
         position: relative;
-        margin-bottom: 10px;
+        bottom: auto;
+        transform: none;
       }
     }
   }
