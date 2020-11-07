@@ -27,6 +27,12 @@ const routes = [
     name: profile,
     component: profile,
     props: true
+  },
+  { 
+    path: '/profile',
+    name: profile,
+    component: profile,
+    props: true
   }
 ]
 
