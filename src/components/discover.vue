@@ -19,8 +19,6 @@
       </div>
     </div>
 
-
-
   </div>
 </template>
 
@@ -38,10 +36,10 @@
       }
     },
     methods: {
-      get_featured_playlist(loacl_access_token) {
+      get_featured_playlist(local_access_token) {
         fetch("https://api.spotify.com/v1/browse/featured-playlists", {
           headers: {
-            Authorization: `Bearer ${loacl_access_token}`
+            Authorization: `Bearer ${local_access_token}`
           }
         })
           .then(res => res.json())
@@ -62,6 +60,15 @@
             }
           })
       },
+      get_new_release(local_access_token) {
+        fetch("https://api.spotify.com/v1/browse/new-releases", {
+          headers: {
+            Authorization: `Bearer ${local_access_token}`
+          }
+        })
+          .then( res => res.json())
+          .then(data => { console.log(data) })
+      },
       remove_loader() {
         const loader = document.querySelector('.loader')
         const discover = document.querySelector('.discover')
@@ -72,6 +79,7 @@
     created() {
       const permanent_token = localStorage.getItem('local_token_new4')
       this.get_featured_playlist(permanent_token)
+      this.get_new_release(permanent_token)
     }
   }
 </script>
