@@ -4,7 +4,7 @@
     <sidebar/>
 
     <!-- loader -->
-    <span class="loade"></span>
+    <span class="loader"></span>
 
     <!-- component -->
     <div class="profile">
@@ -275,12 +275,6 @@
 
         // remove loader
         this.remove_loader()
-      }
-
-      // Get URL and check if user is trying to access page during logout (redirect to login)
-      const url = window.location.href
-      if(url.indexOf('code=') === -1 && localStorage.getItem('local_token_new4') === null) {
-        this.$router.push('login')
       }
     }
   }
