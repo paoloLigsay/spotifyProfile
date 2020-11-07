@@ -228,4 +228,8 @@
   right: 50%;
   bottom: 30px;
   transform: translateX(50%);
+  @include sp {
+    width: 100%;
+    text-align: center;
+  }
 }

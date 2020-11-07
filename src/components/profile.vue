@@ -285,6 +285,7 @@
           })
           .catch(() => {
             localStorage.removeItem('local_token_new4')
+            alert('this one')
             this.$router.push('login')
           })
       }
