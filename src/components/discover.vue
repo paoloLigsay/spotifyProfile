@@ -86,7 +86,7 @@
             for(let album of albums) {
               const new_album_artists = []
               for(const artist of album.artists)
-                new_track_artists.push(artist.name)
+                new_album_artists.push(artist.name)
 
               const new_album = {
                 name: album.name,
