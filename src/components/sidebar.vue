@@ -48,7 +48,7 @@
     methods: {
       set_active(item_number) {
         const sidebar_items = document.querySelectorAll('.sidebar__item')
-        console.log(sidebar_items[item_number])
+        console.log(sidebar_items)
         for(let sidebar_item of sidebar_items) {
           if(sidebar_item.classList.contains('sidebar__item--active'))
             sidebar_item.classList.remove('sidebar__item--active')
@@ -56,7 +56,7 @@
         sidebar_items[item_number].classList.add('sidebar__item--active')
       }
     },
-    created() {
+    mounted() {
       console.log(this.active)
       this.set_active(this.active)
     }
