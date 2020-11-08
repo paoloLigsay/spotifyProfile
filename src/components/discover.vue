@@ -19,7 +19,7 @@
       </div>
       <div v-if="d_playlist.length > 8 && show_more_featured < d_playlist.length" v-on:click="show_more_featured += 6" class="btn"> See more </div>
 
-      <p class="text text--24"> New Releases </p>
+      <p class="text text--24 text--mt150"> New Releases </p>
        <div class="discover__playlist">
         <a v-if="i < show_more_album" :href="d_album.url" class="discover__playlist-item" v-for="(d_album, i) in d_albums" :key="i">
           <img :src="d_album.image" alt="playlist image" class="discover__playlist-img">
