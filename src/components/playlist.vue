@@ -42,7 +42,8 @@
         })
           .then(res => res.json())
           .then(data => {
-            const playlists = data.playlists.items
+            console.log(data)
+            const playlists = data.playlists
             for(let playlist of playlists) {
               const new_playlist = {
                 name: playlist.name,
