@@ -81,9 +81,9 @@
               }
 
               this.d_playlist.push(new_playlist)
-              // remove loader after fetching featured playlist
-              this.remove_loader()
             }
+            // remove loader after fetching featured playlist
+            this.remove_loader()
           })
           .catch(() => {
             localStorage.removeItem('local_token_new4')
