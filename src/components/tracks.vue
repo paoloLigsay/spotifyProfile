@@ -7,7 +7,7 @@
     <span class="loader"></span>
 
     <div class="tracks">
-      <p class="text text--24 text--mt100"> Top Tracks </p>
+      <h2> Top Tracks </h2>
       <div class="profile__tracks-list">
         <a :href="d_track.url" class="profile__tracks" v-for="(d_track, i) in d_tracks" :key="i">
             <img :src="d_track.image" alt="playlist image" class="profile__tracks-img">
@@ -55,12 +55,38 @@
           }
         })
         .then(data => {
-          console.log(data)
+          for(const track of data.items) {
+            const new_track_artists = []
+            for(const artist of track.artists)
+              new_track_artists.push(artist.name)
+
+            const duration_min = parseInt((track.duration_ms / 1000) / 60)
+            const duration_sec = parseInt((track.duration_ms / 1000) % 60)
+            const duration_ms = `${duration_min}:${duration_sec}`
+
+            let new_track = {
+              name: track.name,
+              url: track.external_urls.spotify,
+              image: track.album.images[0].url,
+              artists: new_track_artists,
+              duration: duration_ms
+            }
+
+            this.d_tracks.push(new_track)
+          }
+          // remove loader after fetching featured playlist
+          this.remove_loader()
         })
         .catch(() => {
           localStorage.removeItem('local_token_new4')
           this.$router.push('login')
         })
+      },
+      remove_loader() {
+        const loader = document.querySelector('.loader')
+        const tracks = document.querySelector('.tracks')
+        loader.classList.add('loader--done')
+        tracks.classList.add('tracks--active')
       }
     },
     mounted() {
