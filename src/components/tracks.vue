@@ -55,6 +55,7 @@
           }
         })
         .then(data => {
+          console.log(data)
           for(const track of data.items) {
             const new_track_artists = []
             for(const artist of track.artists)

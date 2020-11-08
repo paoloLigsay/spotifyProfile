@@ -297,11 +297,11 @@ a {
 }
 
 .text--mt100 {
-  margin-top: 100px;
+  margin-top: 100px !important;
 }
 
 .text--mt150 {
-  margin-top: 150px;
+  margin-top: 150px !important;
 }
 
 /* buttons */
@@ -916,5 +916,39 @@ a {
 
 .playlist__list-artists span {
   margin-right: 5px;
+}
+
+.tracks {
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 50px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+  .tracks {
+    padding-top: 120px;
+  }
+}
+
+.tracks--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tracks h2 {
+  font-size: 4.8rem;
+  color: #a5a5a5;
+  width: 100%;
 }
 /*# sourceMappingURL=main.css.map */
