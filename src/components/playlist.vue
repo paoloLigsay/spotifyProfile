@@ -12,8 +12,8 @@
        <div class="playlist__list">
         <a :href="d_playlist_item.url" class="playlist__list-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
           <img :src="d_playlist_item.image" alt="playlist image" class="playlist__list-img">
-          <p class="text text--36"> {{ d_playlist_item.name }} by {{ d_playlist_item.owner }} </p>
-          <p class="text text--24"> {{ d_playlist_item.track_count }} Tracks </p>
+          <p class="text text--21"> {{ d_playlist_item.name }} by {{ d_playlist_item.owner }} </p>
+          <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
         </a>
       </div>
     </div>
@@ -42,7 +42,6 @@
         })
           .then(res => res.json())
           .then(data => {
-            console.log(data.items)
             const playlists = data.items
             for(let playlist of playlists) {
               const new_playlist = {
