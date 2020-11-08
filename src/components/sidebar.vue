@@ -55,7 +55,7 @@
       }
     },
     create() {
-      set_active(this.active)
+      this.set_active(this.active)
     }
   }
 </script>
