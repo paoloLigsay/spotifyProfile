@@ -164,7 +164,7 @@
       &:nth-of-type(2) {
         top: auto;
         bottom: 50%;
-        transform: translateY(50%) translateX(-50%);
+        transform: translateY(50%);
       }
 
       &:nth-of-type(3) {
@@ -175,10 +175,14 @@
 
     &--active {
       .sidebar__hamburger-bar {
-        width: 30px;
+        width: 60%;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        
+        &:nth-of-type(2) {
+          transform: translateY(50%) translateX(-50%);
+        }
 
         &:nth-of-type(3) {
           bottom: 50%;
