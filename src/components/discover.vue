@@ -46,6 +46,7 @@
     components: {
       sidebar
     },
+    props: ['active'],
     data() {
       return {
          d_playlist: [],

@@ -77,6 +77,7 @@
     components: {
       sidebar
     },
+    props: ['active'],
     data() { 
       return {
         d_params: '',
