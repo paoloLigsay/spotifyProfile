@@ -115,7 +115,7 @@
         })
           .then(res => res.json())
           .then(data => console.log(data))
-      }
+      },
       remove_loader() {
         const loader = document.querySelector('.loader')
         const discover = document.querySelector('.discover')
