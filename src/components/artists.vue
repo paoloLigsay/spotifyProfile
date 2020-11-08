@@ -14,7 +14,7 @@
           <img :src="d_artist.image" alt="playlist image" class="discover__playlist-img">
           <p class="text text--21"> {{ d_artist.name }} </p>
           <p class="text"> {{ d_artist.followers }} Followers </p>
-          <p> ss {{ d_artist.image }} </p>
+          <p> ss {{ d_artist.images }} </p>
         </a>
       </div>
     </div>
@@ -59,7 +59,7 @@
               const new_artist = {
                 name: artist.name,
                 followers: format_followers,
-                images: artist,
+                image: artist.images[0].url,
                 url: artist.external_urls.spotify
               }
 
