@@ -14,7 +14,7 @@
           <img :src="d_artist.image" alt="playlist image" class="discover__playlist-img">
           <p class="text text--21"> {{ d_artist.name }} </p>
           <p class="text"> {{ d_artist.followers }} Followers </p>
-          <p> ss {{ d_artist.images }} </p>
+          <p> {{ d_artist.images }} </p>
         </a>
       </div>
     </div>
