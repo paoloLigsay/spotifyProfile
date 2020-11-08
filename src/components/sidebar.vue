@@ -31,7 +31,7 @@
         </li>
       </router-link>
 
-      <router-link to="/playlists">
+      <router-link to="/playlist">
         <li class="sidebar__item">
           <img src="../img/icon-playlist.png" alt="Icon Artist" class="sidebar__icon">
           <p class="sidebar__text"> Playlists </p>

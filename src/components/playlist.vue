@@ -8,7 +8,14 @@
 
     <!-- component -->
     <div class="playlist">
-
+      <h2> PUBLIC PLAYLIST </h2>
+       <div class="discover__playlist">
+        <a :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
+          <img :src="d_playlist_item.image" alt="playlist image" class="discover__playlist-img">
+          <p class="text text--21"> {{ d_playlist_item.name }} by {{ d_playlist_item.owner }} </p>
+          <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +28,11 @@
     components: {
       sidebar
     },
+    data() {
+      return {
+        d_playlist: [],
+      }
+    },
     methods: {
       get_user_playlist(local_access_token) {
         fetch("https://api.spotify.com/v1/me/playlists", {
@@ -29,7 +41,28 @@
           }
         })
           .then(res => res.json())
-          .then(data => console.log(data))
+          .then(data => {
+            const playlists = data.playlists.items
+            for(let playlist of playlists) {
+              const new_playlist = {
+                name: playlist.name,
+                image: playlist.images[0].url,
+                owner: playlist.owner.display_name,
+                track_count: playlist.tracks.total,
+                url: playlist.external_urls.spotify
+              }
+
+              this.d_playlist.push(new_playlist)
+              // remove loader after fetching featured playlist
+              this.remove_loader()
+            }
+          })
+      },
+      remove_loader() {
+        const loader = document.querySelector('.loader')
+        const playlist = document.querySelector('.playlist')
+        loader.classList.add('loader--done')
+        playlist.classList.add('playlist--active')
       }
     },
     created() {
