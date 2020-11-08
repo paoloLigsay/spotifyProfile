@@ -1,6 +1,11 @@
 <template>
   <div class="sidebar">
     <img src="../img/logo.png" alt="Spotify Profile Logo" class="sidebar__logo">
+    <ul class="sidebar__hamburger" @click="open_nav">
+      <li class="sidebar__hamburger-bar"></li>
+      <li class="sidebar__hamburger-bar"></li>
+      <li class="sidebar__hamburger-bar"></li>
+    </ul>
     <ul class="sidebar__list">
 
       <router-link to="/">
@@ -53,6 +58,12 @@
             sidebar_item.classList.remove('sidebar__item--active')
         }
         sidebar_items[item_number].classList.add('sidebar__item--active')
+      },
+      open_nav() {
+        const hamburger = document.querySelector('.sidebar__hamburger')
+        const nav = document.querySelector('sidebar__list')
+        hamburger.classList.toggle('sidebar__hamburger--active')
+        nav.classList.toggle('sidebar__list--active')
       }
     },
     mounted() {
