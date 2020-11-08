@@ -55,7 +55,7 @@
         sidebar_items[item_number].classList.add('sidebar__item--active')
       }
     },
-    created() {
+    mounted() {
       const active_number = this.active
       this.set_active(active_number)
     }
