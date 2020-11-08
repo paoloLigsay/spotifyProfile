@@ -54,7 +54,7 @@
         sidebar_items[item_number].classList.add('sidebar__item--active')
       }
     },
-    create() {
+    created() {
       console.log(this.active)
       this.set_active(this.active)
     }
