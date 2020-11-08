@@ -57,6 +57,10 @@
         .then(data => {
           console.log(data)
         })
+        .catch(() => {
+          localStorage.removeItem('local_token_new4')
+          this.$router.push('login')
+        })
       }
     },
     mounted() {

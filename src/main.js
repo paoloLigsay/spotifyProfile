@@ -7,6 +7,7 @@ import discover from './components/discover'
 import profile from './components/profile'
 import login from './components/login'
 import playlist from './components/playlist'
+import tracks from './components/tracks'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -39,6 +40,12 @@ const routes = [
     path: '/playlist',
     name: playlist,
     component: playlist,
+    props: true
+  },
+  { 
+    path: '/tracks',
+    name: tracks,
+    component: tracks,
     props: true
   }
 ]
