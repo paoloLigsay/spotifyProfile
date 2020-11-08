@@ -8,6 +8,7 @@ import profile from './components/profile'
 import login from './components/login'
 import playlist from './components/playlist'
 import tracks from './components/tracks'
+import artists from './components/artists'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -46,6 +47,12 @@ const routes = [
     path: '/tracks',
     name: tracks,
     component: tracks,
+    props: true
+  },
+  { 
+    path: '/artists',
+    name: artists,
+    component: artists,
     props: true
   }
 ]
