@@ -8,7 +8,7 @@ $white: #fff;
 $dark: #100f0f;
 $gray: #a5a5a5;
 
-$texts: 12, 21, 24, 48;
+$texts: 12, 21, 24, 36, 48;
 
 // imports
 @import './mixin';
@@ -17,3 +17,4 @@ $texts: 12, 21, 24, 48;
 @import './login';
 @import './profile';
 @import './discover';
+@import './playlist';
