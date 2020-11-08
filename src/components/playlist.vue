@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import sidebar from './sidebar'
+
   export default {
     name: 'playlist',
     components: {
@@ -32,7 +34,7 @@
     },
     created() {
       const permanent_token = localStorage.getItem('local_token_new4')
-      get_user_playlist(permanent_token)
+      this.get_user_playlist(permanent_token)
     }
   }
 </script>
