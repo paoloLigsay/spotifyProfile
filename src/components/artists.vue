@@ -59,7 +59,7 @@
               const new_artist = {
                 name: artist.name,
                 followers: format_followers,
-                images: artist.images[0].url,
+                images: artist.images[0],
                 url: artist.external_urls.spotify
               }
 
