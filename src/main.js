@@ -54,6 +54,10 @@ const routes = [
     name: artists,
     component: artists,
     props: true
+  },
+  {
+    path :'*',
+    component: profile
   }
 ]
 
