@@ -186,7 +186,7 @@
         })
       },
       get_user_playlists (local_access_token) {
-        fetch("https://api.spotify.com/v1/me/playlists", {
+        fetch("https://api.spotify.com/v1/me/playlists?limit=2", {
           headers: {
             Authorization: `Bearer ${local_access_token}`
           }
