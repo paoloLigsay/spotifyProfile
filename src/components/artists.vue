@@ -8,7 +8,7 @@
 
     <!-- component -->
     <div class="discover">
-      <h2> DISCOVER </h2>
+      <h2> Top Artists </h2>
       <div class="discover__playlist">
         <a :href="d_artist.url" class="discover__playlist-item" v-for="(d_artist, i) in d_artists" :key="i">
           <img :src="d_artist.image" alt="playlist image" class="discover__playlist-img">
