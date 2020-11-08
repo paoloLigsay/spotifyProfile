@@ -128,6 +128,11 @@
       background-color: $primary;
       opacity: 0;
       transition: all 300ms ease-in;
+      @include sp {
+        top: 50%;
+        transform: translateY(50%);
+        height: 40%;
+      }
     }
 
     &--active,
