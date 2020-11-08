@@ -14,6 +14,7 @@
           <img :src="d_artist.image" alt="playlist image" class="discover__playlist-img">
           <p class="text text--21"> {{ d_artist.name }} </p>
           <p class="text"> {{ d_artist.followers }} Followers </p>
+          <p> {{ d_artist.image }} </p>
         </a>
       </div>
     </div>
@@ -51,10 +52,13 @@
           })
           .then(data => {
             const artists = data.items
+            // fix followers number format : 1234 -> 1,234
+
             for(const artist of artists) {
+              const format_followers = artist.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               const new_artist = {
                 name: artist.name,
-                followers: artist.followers.total,
+                followers: format_followers,
                 images: artist.images[0].url,
                 url: artist.external_urls.spotify
               }
