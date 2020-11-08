@@ -157,7 +157,7 @@
           )
       },
       get_user_tracks(local_access_token) {
-        return fetch("https://api.spotify.com/v1/me/top/tracks?limit=1", {
+        return fetch("https://api.spotify.com/v1/me/top/tracks?limit=2", {
           headers: {
             Authorization: `Bearer ${local_access_token}`
           }
