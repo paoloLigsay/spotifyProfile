@@ -55,6 +55,7 @@
       }
     },
     create() {
+      console.log(this.active)
       this.set_active(this.active)
     }
   }
