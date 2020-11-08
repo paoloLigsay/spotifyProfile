@@ -1,7 +1,7 @@
 <template>
   <div>
      <!-- sidebar -->
-    <sidebar/>
+    <sidebar :active="1"/>
 
     <!-- loader -->
     <span class="loader"></span>
@@ -9,8 +9,6 @@
     <!-- component -->
     <div class="discover">
       <h2> DISCOVER </h2>
-      <p class="text text--24"> Top Artists </p>
-
        <p class="text text--24"> Featured Playlists </p>
        <div class="discover__playlist">
         <a v-if="i < show_more_featured" :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
@@ -107,15 +105,6 @@
             }
            })
       },
-      get_top_artists(local_access_token) {
-        fetch("https://api.spotify.com/v1/me/top/artists", {
-          headers: {
-            Authorization: `Bearer ${local_access_token}`
-          }
-        })
-          .then(res => res.json())
-          .then(data => console.log(data))
-      },
       remove_loader() {
         const loader = document.querySelector('.loader')
         const discover = document.querySelector('.discover')
@@ -127,7 +116,6 @@
       const permanent_token = localStorage.getItem('local_token_new4')
       this.get_featured_playlist(permanent_token)
       this.get_new_release(permanent_token)
-      this.get_top_artists(permanent_token)
 
       // Get URL and redirect if not logged in
       this.d_loc = window.location.href

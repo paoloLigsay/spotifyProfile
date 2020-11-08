@@ -43,6 +43,19 @@
 
 <script>
   export default {
-    name: 'sidebar'
+    name: 'sidebar',
+    props: ['active'],
+    methods: {
+      set_active(item_number) {
+        const sidebar_items = document.querySelectorAll('.sidebar__item')
+        for(let sidebar_item of sidebar_items) {
+          sidebar_item.classList.remove('sidebar__item--active')
+        }
+        sidebar_items[item_number].classList.add('sidebar__item--active')
+      }
+    },
+    create() {
+      set_active(this.active)
+    }
   }
 </script>

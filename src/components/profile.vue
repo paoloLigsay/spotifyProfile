@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- sidebar -->
-    <sidebar/>
+    <sidebar :active="0"/>
 
     <!-- loader -->
     <span class="loader"></span>
