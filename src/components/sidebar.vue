@@ -61,7 +61,7 @@
       },
       open_nav() {
         const hamburger = document.querySelector('.sidebar__hamburger')
-        const nav = document.querySelector('sidebar__list')
+        const nav = document.querySelector('.sidebar__list')
         hamburger.classList.toggle('sidebar__hamburger--active')
         nav.classList.toggle('sidebar__list--active')
       }
