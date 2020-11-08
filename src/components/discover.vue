@@ -62,7 +62,13 @@
             Authorization: `Bearer ${local_access_token}`
           }
         })
-          .then(res => res.json())
+          .then(res => {
+             if (res.ok) {
+              return res.json()
+            } else {
+              throw new Error('Please Login. No Token Stored.');
+            }
+          })
           .then(data => {
             const playlists = data.playlists.items
             for(let playlist of playlists) {
@@ -78,6 +84,10 @@
               // remove loader after fetching featured playlist
               this.remove_loader()
             }
+          })
+          .catch(() => {
+            localStorage.removeItem('local_token_new4')
+            this.$router.push('login')
           })
       },
       get_new_release(local_access_token) {
