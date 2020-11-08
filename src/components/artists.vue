@@ -9,12 +9,11 @@
     <!-- component -->
     <div class="discover">
       <h2> DISCOVER </h2>
-       <p class="h2"> Top Artists </p>
-       <div class="discover__playlist">
-        <a :href="d_playlist_item.url" class="discover__playlist-item" v-for="(d_playlist_item, i) in d_playlist" :key="i">
-          <img :src="d_playlist_item.image" alt="playlist image" class="discover__playlist-img">
-          <p class="text text--21"> {{ d_playlist_item.name }} by {{ d_playlist_item.owner }} </p>
-          <p class="text"> {{ d_playlist_item.track_count }} Tracks </p>
+      <div class="discover__playlist">
+        <a :href="d_artist.url" class="discover__playlist-item" v-for="(d_artist, i) in d_artists" :key="i">
+          <img :src="d_artist.image" alt="playlist image" class="discover__playlist-img">
+          <p class="text text--21"> {{ d_artist.name }} </p>
+          <p class="text"> {{ d_artist.followers }} Followers </p>
         </a>
       </div>
     </div>
@@ -38,7 +37,7 @@
     },
     methods: {
       get_artists(local_access_token) {
-        fetch("https://api.spotify.com/v1/me/top/tracks", {
+        fetch("https://api.spotify.com/v1/me/top/artists", {
           headers: {
             Authorization: `Bearer ${local_access_token}`
           }
@@ -51,7 +50,18 @@
             }
           })
           .then(data => {
-            console.log(data)
+            const artists = data.items
+            for(const artist of artists) {
+              const new_artist = {
+                name: artist.name,
+                followers: artist.followers.total,
+                images: artist.images[0].url,
+                url: artist.external_urls.spotify
+              }
+
+              this.d_artists.push(new_artist)
+            }
+
             // remove loader after fetching featured playlist
             this.remove_loader()
           })
